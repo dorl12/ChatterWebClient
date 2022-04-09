@@ -1,0 +1,39 @@
+body{
+    background-color: rgb(182, 231, 255);
+}
+
+#loginArea{
+    margin-top: 5%;
+    background-color: rgb(83, 165, 165);
+    top: 30%;
+    left: 50%;
+    width: 50%;
+    height: 50%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    box-shadow: 0px 5px 7px rgba(0, 0, 0, 0.6);
+    min-height: 400px;
+}
+
+#welcomLogin {
+    margin-bottom: 3%;
+}
+
+.row.mb-3{
+    margin-right: 10%;
+    margin-left: 3%;
+}
+
+#loginButton{
+    margin-bottom: 10px;
+}
+
+.click--here{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.invalid--data{
+    text-decoration: underline;
+    color: red;
+}

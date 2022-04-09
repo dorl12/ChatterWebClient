@@ -1,0 +1,42 @@
+body{
+    background-color: rgb(182, 231, 255);
+}
+
+#registerArea{
+    margin-top: 150px;
+    background-color: rgb(83, 165, 165);
+    top: 30%;
+    left: 50%;
+    width: 50%;
+    height: 80%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    box-shadow: 0px 5px 7px rgba(0, 0, 0, 0.6);
+    min-height: 700px;
+    
+}
+
+#welcomRegister {
+    margin-bottom: 3%;
+}
+
+.row.mb-3{
+    margin-right: 10%;
+    margin-left: 3%;
+}
+
+#RegisterButton{
+    margin-bottom: 10px;
+}
+
+#imageFile{
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 80%;
+
+}
+
+.click--here{
+    text-decoration: underline;
+    cursor: pointer;
+}
