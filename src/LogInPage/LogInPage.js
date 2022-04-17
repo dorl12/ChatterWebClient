@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './LogInPage.css';
 import allUsers from '../allUsers';
+import './LogInPage.css';
+
 
 function LogInPage(props) {
     const [loginData, setLoginData] = React.useState({
@@ -47,21 +48,9 @@ function LogInPage(props) {
         }
     }
 
-    const sss = [
-        {username: "or",
-        password: "or123",
-        nickname: "or",
-        image: {}},
-    
-        {username: "yotam",
-        password: "y123",
-        nickname: "yotam",
-        image: {}},
-      ];
-
     function findUsernameAndPassword() {
         let flag = false;
-        sss.forEach(user => {
+        allUsers.forEach(user => {
             if(user.username === loginData.username && user.password === loginData.password) {
                 flag = true;
             }

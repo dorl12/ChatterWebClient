@@ -70,22 +70,10 @@ function RegisterPage(props) {
             }
         }
     }
-
-    const sss = [
-        {username: "or",
-        password: "or123",
-        nickname: "or",
-        image: {}},
     
-        {username: "yotam",
-        password: "y123",
-        nickname: "yotam",
-        image: {}},
-      ];
-
     function findIfUsernameExist() {
         let flag = false;
-        sss.forEach(user => {
+        allUsers.forEach(user => {
             if(user.username === RegisterData.username) {
                 flag = true;
             }
