@@ -67,6 +67,8 @@ function RegisterPage(props) {
                 setregisterValid(false);
             } else {
                 setregisterValid(true);
+                allUsers.push(RegisterData);
+                //move to next page
             }
         }
     }
@@ -77,7 +79,6 @@ function RegisterPage(props) {
             if(user.username === RegisterData.username) {
                 flag = true;
             }
-            console.log(user);
         });
         return flag;
     }
