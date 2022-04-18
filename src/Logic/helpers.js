@@ -43,3 +43,5 @@ class Helpers{
 }
 
 export default findChats;
+
+//add class

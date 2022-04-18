@@ -3,10 +3,11 @@ import ChatSideBar from '../Components/ChatSideBar';
 import ChatContent from '../Components/ChatContent';
 import './ChatPage.css';
 
-function ChatPage(){
+function ChatPage(props){
 
     const [contact, setContact] = useState("Empty");
     const [refreshed, setRefreshed] = useState(false);
+
 
     function isEmpty() {
         if (contact=="Empty") {
@@ -21,7 +22,7 @@ function ChatPage(){
                 <div className="container">
                     <div className="row">
                         <div className="col-4 bg-primary rounded border border-white">
-                            <ChatSideBar setContact={setContact}></ChatSideBar>
+                            <ChatSideBar username={props.username} setContact={setContact}></ChatSideBar>
                         </div>
                         <div className="col bg-success rounded border border-white">
                             {isEmpty()}

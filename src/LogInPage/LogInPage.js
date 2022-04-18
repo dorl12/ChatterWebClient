@@ -2,13 +2,16 @@ import React from 'react';
 //import ReactDOM from 'react-dom/client';
 import allUsers from '../allUsers';
 import './LogInPage.css';
-
+import { Link } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 
 function LogInPage(props) {
     const [loginData, setLoginData] = React.useState({
         username: "",
         password: ""
     })
+
+    let history = useHistory();
 
     function handleChange(event) {
         const { name, value } = event.target
@@ -41,9 +44,15 @@ function LogInPage(props) {
             console.log(" flag : " + flag);
             if(flag) {
                 setlogInValid(true);
+                //move to next page
+                //<Link to="/chatPage"></Link>
+                history.push("/chatPage");
+                console.log("Chats!")
+                props.updateUser(loginData.username);
             } else {
                 setlogInValid(false);
-                //move to next page
+                
+                
             }
             
         }
@@ -87,7 +96,7 @@ function LogInPage(props) {
                 <button type="submit" className="btn btn-primary" id="loginButton">Login</button>
                 <div>{!logInValid && <small className="invalid--data">Username or password incorrect</small>}</div>
                 <div id="registerdHelpBlock" className="form-text">
-                    Not registerd? <a className="click--here" onClick={props.handleClick}>Click here</a> to register.
+                    Not registerd? <Link className="click--here" to="/register">Click here</Link> to register.
                 </div>
             </form>
         </div>
@@ -95,3 +104,4 @@ function LogInPage(props) {
 }
 
 export default LogInPage;
+//onClick={ ({history}) => { if(logInValid) {history.push("/chatPage")} }}

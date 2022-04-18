@@ -2,7 +2,8 @@ import React from 'react';
 //import ReactDOM from 'react-dom/client';
 import allUsers from '../allUsers';
 import './RegisterPage.css';
-
+import { Link } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 
 function RegisterPage(props) {
     const [RegisterData, setRegisterData] = React.useState({
@@ -12,6 +13,9 @@ function RegisterPage(props) {
         nickname: "",
         image: {}
     })
+
+    let history = useHistory();
+
 
     function handleChange(event) {
         const { name, value, type, files} = event.target
@@ -28,6 +32,7 @@ function RegisterPage(props) {
     const [repeatPasswordValid, setrepeatPasswordValid] = React.useState(true)
     const [nicknameValid, setnicknamerValid] = React.useState(true)
     const [registerValid, setregisterValid] = React.useState(true)
+
 
     console.log(passwordValid)
     function handleSubmit(event) {
@@ -69,6 +74,10 @@ function RegisterPage(props) {
                 setregisterValid(true);
                 allUsers.push(RegisterData);
                 //move to next page
+                //<Link to="/chatPage"></Link>
+                history.push("/chatPage");
+                console.log("Chats from register!")
+                props.updateUser(RegisterData.username);
             }
         }
     }
@@ -134,7 +143,7 @@ function RegisterPage(props) {
                 <button type="submit" className="btn btn-primary" id="RegisterButton">Register</button>
                 <div>{!registerValid && <small className="invalid--data">Username already exist, pls try different one</small>}</div>
                 <div id="registerdHelpBlock" className="form-text">
-                    Already registerd? <a className="click--here" onClick={props.handleClick}>Click here</a> to login.
+                    Already registerd? <Link className="click--here" to="/">Click here</Link> to login.
                 </div>
             </form>
         </div>
