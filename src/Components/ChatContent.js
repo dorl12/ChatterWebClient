@@ -15,7 +15,7 @@ function ChatContent(props){
         <>
             <h1>{props.contact}</h1>
             {chatContent}
-            <InputBar setRefreshed={props.setRefreshed} contact={props.contact}></InputBar>
+            <InputBar className="bottom" setRefreshed={props.setRefreshed} contact={props.contact}></InputBar>
         </>
 
     );

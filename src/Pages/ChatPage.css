@@ -11,3 +11,8 @@ img {
 .bold {
     font-weight: bold;
 }
+
+.bottom {
+    position: absolute;
+    bottom: 0;
+}

@@ -6,7 +6,7 @@ function MessageItem({sender, text, time}){
     if (isMe) {
         return (
             <>
-                <div className="myMessage w-50 bg-danger border">
+                <div className="myMessage w-75 bg-light bg-gradient border">
                     {text}
                     <br></br>
                     {time}
@@ -17,7 +17,7 @@ function MessageItem({sender, text, time}){
     }
     return (
         <>
-            <div className="otherMessage w-50 ms-auto bg-secondary border">
+            <div className="otherMessage w-75 ms-auto bg-info bg-gradient border">
                 {text}
                 <br></br>
                 {time}

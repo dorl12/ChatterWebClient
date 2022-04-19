@@ -15,6 +15,7 @@ function AddNewChat(props){
         let obj = {name: input, image: "", history: []}
         messages.push(obj);
         props.setChange((prev) => {return !prev});
+        setInput("")
     }
 
     return (

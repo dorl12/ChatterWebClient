@@ -1,26 +1,50 @@
 import React, { useState } from 'react';
 import ChatItem from './ChatItem';
-import chatWith from './chatWith';
 import AddNewChat from './AddNewChat';
 import messages from './messages';
+import { ListGroup } from 'react-bootstrap';
+import allUsers from '../allUsers';
 
 function ChatSideBar(props){
 
     const [change, setChange] = useState(false);
     const chatList = messages.map((chat, key) => {
-        return (<ChatItem setContact={props.setContact} {...chat}  key={key}></ChatItem>)
+        if (chat.name==props.contact) {
+            return (<ListGroup.Item as="li" active key={key}><ChatItem setContact={props.setContact} {...chat}></ChatItem></ListGroup.Item>)
+        }
+        return (<ListGroup.Item as="li" key={key}><ChatItem setContact={props.setContact} {...chat}></ChatItem></ListGroup.Item>)
     });
+
+
+    function findImage() {
+        for (let i=0; i < allUsers.length; i++) {
+            if (props.username==allUsers[i].username){
+                return (allUsers[i].image);
+            }
+        }
+    }
 
     return(
         <div>
             <AddNewChat setChange={setChange}></AddNewChat>
-            <h1>Hello, {props.username}</h1>
-            <svg xmlns="http://www.w3.org/2000/svg" type="button" data-bs-toggle="modal" data-bs-target="#addChat" width="16" height="16" fill="currentColor" className="bi bi-person-plus-fill" viewBox="0 0 16 16">
-                <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                <path fillRule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
-            </svg>
+            <div className="row">
+                <div className="col-1">
+                    <img src={findImage()} alt={props.username}></img>
+                </div>
+                <div className="col">
+                    <h1>Hello, {props.username}</h1>
+                </div>
+                <div className="col-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" type="button" data-bs-toggle="modal" data-bs-target="#addChat" width="25" height="25" fill="currentColor" className="bi bi-person-plus-fill" viewBox="0 0 16 16">
+                        <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                        <path fillRule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                    </svg>
+                </div>
+            </div>
             <div className="overflow-auto">
-                {chatList}
+                <ListGroup as="ul">
+                    {chatList}
+                </ListGroup>
             </div>
         </div>
 
