@@ -15,8 +15,8 @@ function AttachFiles(props){
                     <Popover.Body>
                         <ButtonToolbar>
                             <ButtonGroup>
-                                <AddImage></AddImage>
-                                <AddVideo></AddVideo>
+                                <AddImage user={props.user} contact={props.contact} setRefreshed={props.setRefreshed} setInput={props.setInput}></AddImage>
+                                <AddVideo user={props.user} contact={props.contact} setRefreshed={props.setRefreshed} setInput={props.setInput}></AddVideo>
                                 <AddRecording></AddRecording>
                                 <Button>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-pin-map-fill" viewBox="0 0 16 16">

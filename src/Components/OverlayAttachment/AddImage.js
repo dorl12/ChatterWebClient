@@ -14,7 +14,7 @@ function AddImage(props){
         const files = event.target.files
         setImage(URL.createObjectURL(files[0]))
         handleClose()
-        //Helpers.sendMessage(props.user, "<img src=" + image + "></img>", props.setRefreshed, props.setInput)
+        Helpers.sendMessage(props.user, props.contact, "img:" + URL.createObjectURL(files[0]), props.setRefreshed, props.setInput)
     }
 
     return (

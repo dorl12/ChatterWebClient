@@ -14,18 +14,18 @@ function ChatPage(props){
         if (contact=="Empty") {
             return (<div></div>);
         } else {
-            return (<ChatContent setRefreshed={setRefreshed} contact={contact}></ChatContent>);
+            return (<ChatContent setRefreshed={setRefreshed} username={props.username} contact={contact}></ChatContent>);
         }
     }
 
     return(
             <div className="BoundingBox container">
-                <div className="container vh-100">
+                <div className="container">
                     <div className="row">
-                        <div className="col-4 bg-light rounded border border-white overflow-auto">
+                        <div className="vh-100 col-4 bg-light rounded border border-white overflow-auto">
                             <ChatSideBar username={props.username} setContact={setContact} contact={contact}></ChatSideBar>
                         </div>
-                        <div className="col bg-secondary rounded border border-white overflow-auto">
+                        <div className="vh-100 col bg-secondary rounded border border-white">
                             {isEmpty()}
                         </div>
                     </div>

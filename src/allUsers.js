@@ -4,12 +4,12 @@ import woman1 from './woman1.jpg';
  const allUsers = [
     {username: "or",
     password: "or123",
-    nickname: "or",
+    nickname: "Or Drukman",
     image: man1},
 
     {username: "yotam",
     password: "y123",
-    nickname: "yotam",
+    nickname: "Yotam Levin",
     image: man1}
   ];
 

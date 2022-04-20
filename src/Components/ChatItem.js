@@ -4,6 +4,11 @@ function ChatItem(props){
 
     function shortenText(){
         let lastMessage = props.history[props.history.length - 1].text
+        if (lastMessage.slice(0,4)=="img:"){
+            return ("~Image~");
+        } else if(lastMessage.slice(0,4)=="vid:") {
+            return ("~Video~");
+        }
         let messageLen = lastMessage.length
         if (messageLen > 30) {
             lastMessage = lastMessage.slice(0, 30) + "..."

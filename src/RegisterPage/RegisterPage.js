@@ -1,9 +1,9 @@
 import React from 'react';
-//import ReactDOM from 'react-dom/client';
 import allUsers from '../allUsers';
 import './RegisterPage.css';
 import { Link } from 'react-router-dom';
 import { useHistory } from "react-router-dom";
+import messages from '../Components/messages';
 
 function RegisterPage(props) {
     const [RegisterData, setRegisterData] = React.useState({
@@ -15,7 +15,6 @@ function RegisterPage(props) {
     })
 
     let history = useHistory();
-
 
     function handleChange(event) {
         const { name, value, type, files} = event.target
@@ -73,8 +72,9 @@ function RegisterPage(props) {
             } else {
                 setregisterValid(true);
                 allUsers.push(RegisterData);
-                //move to next page
-                //<Link to="/chatPage"></Link>
+                messages.push({user: RegisterData.username, 
+                    chats: []
+                })
                 history.push("/chatPage");
                 console.log("Chats from register!")
                 props.updateUser(RegisterData.username);
@@ -116,9 +116,9 @@ function RegisterPage(props) {
                 </div>
 
                 <div className="row mb-3">
-                    <label htmlFor="inputRepeatPassword3" className="col-sm-2 col-form-label">Re Password</label>
+                    <label htmlFor="inputRepeatPassword3" className="col-sm-2 col-form-label">Verify Password</label>
                     <div className="col-sm-10">
-                        <input type="password" className="form-control" placeholder="Repeat Password" id="inputRepeatPassword3"
+                        <input type="password" className="form-control" placeholder="Verify Password" id="inputRepeatPassword3"
                             name="repeatPassword" onChange={handleChange} value={RegisterData.repeatPassword}></input>
                         <div>{!repeatPasswordValid && <small className="invalid--data">Password doesn't mach!</small>}</div>
                     </div>

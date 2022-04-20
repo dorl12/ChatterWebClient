@@ -1,5 +1,7 @@
 import React, {useState} from "react";
 import { FormControl, FormLabel } from "react-bootstrap";
+import allUsers from "../allUsers";
+import Helpers from "../Logic/helpers";
 import messages from "./messages";
 
 function AddNewChat(props){
@@ -12,8 +14,15 @@ function AddNewChat(props){
     }
 
     function addContact() {
-        let obj = {name: input, image: "", history: []}
-        messages.push(obj);
+        var position = Helpers.findNumOfUser(props.username)
+        var image = ""
+        for(var i=0; i < allUsers.length; i++){
+            if(allUsers[i].nickname == input) {
+                image = allUsers[i].image
+            }
+        }
+        let obj = {name: input, image: image, history: []}
+        messages[position].chats.push(obj);
         props.setChange((prev) => {return !prev});
         setInput("")
     }

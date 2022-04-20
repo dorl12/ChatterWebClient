@@ -1,6 +1,4 @@
-.BoundingBox {
-    position: absolute;
-}
+
 
 img {
     border-radius: 50%;
@@ -13,6 +11,30 @@ img {
 }
 
 .bottom {
-    position: absolute;
-    bottom: 0;
+    bottom: 0vh !important;
+    width: 100%;
+}
+
+.messageImage {
+    border-radius: 0%;
+    width: 50%;
+    height: auto;
+}
+
+.messageVideo {
+    width: 70%;
+    height: auto;
+}
+
+.addChat {
+    padding-right: 10%;
+    padding-top: 3%;
+}
+
+.fullPage {
+    max-height: 100%;
+}
+
+.scroller {
+    height: 88vh;
 }
