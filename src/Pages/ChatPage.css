@@ -26,7 +26,7 @@ img {
     height: auto;
 }
 
-.addChat {
+.sideBarIcons {
     padding-right: 10%;
     padding-top: 3%;
 }
@@ -37,4 +37,21 @@ img {
 
 .scroller {
     height: 88vh;
+}
+
+.content-bg {
+    background-color: rgb(0, 92, 100);
+}
+
+.bbb{
+    border-radius: 5px;
+    box-shadow: 0px 5px 7px rgba(0, 0, 0, 0.6);
+}
+
+.contactColor {
+    background-color: rgba(148, 255, 255, 0.991);
+}
+
+.padded {
+    margin-top: 20px;
 }

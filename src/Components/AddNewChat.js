@@ -16,12 +16,14 @@ function AddNewChat(props){
     function addContact() {
         var position = Helpers.findNumOfUser(props.username)
         var image = ""
-        for(var i=0; i < allUsers.length; i++){
-            if(allUsers[i].nickname == input) {
+        var i;
+        for(i=0; i < allUsers.length; i++){
+            if(allUsers[i].username == input) {
                 image = allUsers[i].image
+                break
             }
         }
-        let obj = {name: input, image: image, history: []}
+        let obj = {name: allUsers[i].nickname, image: image, history: []}
         messages[position].chats.push(obj);
         props.setChange((prev) => {return !prev});
         setInput("")

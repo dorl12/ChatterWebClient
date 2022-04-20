@@ -39,15 +39,10 @@ function LogInPage(props) {
             setpasswordValid(true);
         }
         if(userValid && passwordValid) {
-            console.log("aas");
             let flag = findUsernameAndPassword();
-            console.log(" flag : " + flag);
             if(flag) {
                 setlogInValid(true);
-                //move to next page
-                //<Link to="/chatPage"></Link>
                 history.push("/chatPage");
-                console.log("Chats!")
                 props.updateUser(loginData.username);
             } else {
                 setlogInValid(false);
@@ -72,7 +67,7 @@ function LogInPage(props) {
 
     return (
         <div id="loginArea">
-            <h1 className="display-3" id="welcomLogin">Welcom to Login Page</h1>
+            <h1 className="display-3" id="welcomLogin">Welcome to Login Page</h1>
             <form onSubmit={handleSubmit}>
                 <div className="row mb-3">
                     <label htmlFor="inputUsername3" className="col-sm-2 col-form-label">Username</label>

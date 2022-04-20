@@ -9,17 +9,17 @@ function ChatContent(props){
     const cont = Helpers.findChats(props.username, props.contact);
 
     const chatContent = cont.map((message, key) => {
-        return <MessageItem {...message} key={key}></MessageItem>
+        return (<MessageItem {...message} key={key}></MessageItem>)
     });
 
     return (
         <>
             <Container fluid>
                 <Row>
-                    <h1>{props.contact}</h1>
+                    <h1 className='bbb border contactColor'>{props.contact}</h1>
                 </Row>
                 <Row className="overflow-auto scroller">
-                    <div>
+                    <div className='padded'>
                         {chatContent}
                     </div>
                 </Row>

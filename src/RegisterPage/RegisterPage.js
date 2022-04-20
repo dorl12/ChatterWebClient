@@ -33,11 +33,11 @@ function RegisterPage(props) {
     const [registerValid, setregisterValid] = React.useState(true)
 
 
-    console.log(passwordValid)
     function handleSubmit(event) {
         event.preventDefault()
         if (RegisterData.username.length === 0) {
             setUserValid(false)
+            return
         } else {
             setUserValid(true)
         }
@@ -48,6 +48,7 @@ function RegisterPage(props) {
             if (!(matchPattern != null) || !(/[a-zA-Z]+/.test(RegisterData.password))) {
                 console.log('The input string not contain numbers');
                 setpasswordValid(false);
+                return
             } else {
                 setpasswordValid(true)
             }
@@ -55,21 +56,27 @@ function RegisterPage(props) {
 
         if (RegisterData.password !== RegisterData.repeatPassword) {
             setrepeatPasswordValid(false)
+            return
         } else {
             setrepeatPasswordValid(true)
         }
         if (RegisterData.nickname.length === 0) {
             setnicknamerValid(false)
+            return
         } else {
             setnicknamerValid(true)
         }
-
+        finalCheck();
+    }
+    
+    function finalCheck() {
         if(userValid && passwordValid && repeatPasswordValid && nicknameValid) {
             let flag = findIfUsernameExist();
             console.log(" flag : " + flag);
             if(flag) {
                 setregisterValid(false);
             } else {
+
                 setregisterValid(true);
                 allUsers.push(RegisterData);
                 messages.push({user: RegisterData.username, 
@@ -80,8 +87,9 @@ function RegisterPage(props) {
                 props.updateUser(RegisterData.username);
             }
         }
+        console.log(allUsers)
     }
-    
+
     function findIfUsernameExist() {
         let flag = false;
         allUsers.forEach(user => {
@@ -95,7 +103,7 @@ function RegisterPage(props) {
 
     return (
         <div id="registerArea">
-            <h1 className="display-3" id="welcomRegister">Welcom to Register Page</h1>
+            <h1 className="display-3" id="welcomRegister">Welcome to Register Page</h1>
             <form onSubmit={handleSubmit}>
                 <div className="row mb-3">
                     <label htmlFor="inputUsername3" className="col-sm-2 col-form-label">Username</label>

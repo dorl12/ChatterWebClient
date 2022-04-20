@@ -31,7 +31,7 @@ function MessageItem({sender, text, time}){
     if (isMe) {
         return (
             <>
-                <div className={"myMessage" + chooseMsgSize() + "bg-light bg-gradient border"}>
+                <div className={"myMessage" + chooseMsgSize() + "bg-light bg-gradient bbb"}>
                     {chooseObject()}
                     <br></br>
                     {time}
@@ -42,8 +42,8 @@ function MessageItem({sender, text, time}){
     }
     return (
         <>
-            <div className={"otherMessage" + chooseMsgSize() + "ms-auto bg-info bg-gradient border"}>
-                {text}
+            <div className={"otherMessage" + chooseMsgSize() + "ms-auto bg-info bg-gradient bbb"}>
+                {chooseObject()}
                 <br></br>
                 {time}
             </div>

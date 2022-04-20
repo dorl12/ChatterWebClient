@@ -19,13 +19,13 @@ function ChatPage(props){
     }
 
     return(
-            <div className="BoundingBox container">
+            <div className="container bbb">
                 <div className="container">
                     <div className="row">
-                        <div className="vh-100 col-4 bg-light rounded border border-white overflow-auto">
+                        <div className="vh-100 col-4 bg-light rounded overflow-auto">
                             <ChatSideBar username={props.username} setContact={setContact} contact={contact}></ChatSideBar>
                         </div>
-                        <div className="vh-100 col bg-secondary rounded border border-white">
+                        <div className="vh-100 col content-bg rounded">
                             {isEmpty()}
                         </div>
                     </div>
