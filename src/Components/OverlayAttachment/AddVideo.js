@@ -7,7 +7,7 @@ function AddVideo(props){
     const [show, setShow] = useState(false);
     const [video, setVideo] = useState({});
 
-    const handleClose = () => setShow(false);
+    const handleClose = () => {setShow(false); props.setAppearance(false);};
     const handleShow = () => setShow(true);
     
     function handleChange(event){

@@ -7,7 +7,7 @@ function AddRecording(props){
     const [show, setShow] = useState(false);
     const [record, setRecord] = useState({});
 
-    const handleClose = () => setShow(false);
+    const handleClose = () => {setShow(false); props.setAppearance(false);};
     const handleShow = () => setShow(true);
     
     function handleChange(event){

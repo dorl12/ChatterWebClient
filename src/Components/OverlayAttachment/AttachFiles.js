@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {Button, ButtonGroup, ButtonToolbar, Popover, OverlayTrigger} from 'react-bootstrap';
 import AddImage from "./AddImage";
 import AddRecording from "./AddRecording";
@@ -7,16 +7,20 @@ import AddVideo from "./AddVideo";
 //user={props.user} setRefreshed={props.setRefreshed} setInput={props.setInput}
 
 function AttachFiles(props){
+
+    const [appearance, setAppearance] = useState(false)
+
     return (
         <OverlayTrigger
+            show={appearance}
             trigger="click"
             overlay={
                 <Popover id={`popover-positioned-top`}>
                     <Popover.Body>
                         <ButtonToolbar>
                             <ButtonGroup>
-                                <AddImage user={props.user} contact={props.contact} setRefreshed={props.setRefreshed} setInput={props.setInput}></AddImage>
-                                <AddVideo user={props.user} contact={props.contact} setRefreshed={props.setRefreshed} setInput={props.setInput}></AddVideo>
+                                <AddImage setAppearance={setAppearance} user={props.user} contact={props.contact} setRefreshed={props.setRefreshed} setInput={props.setInput}></AddImage>
+                                <AddVideo setAppearance={setAppearance} user={props.user} contact={props.contact} setRefreshed={props.setRefreshed} setInput={props.setInput}></AddVideo>
                                 <AddRecording></AddRecording>
                                 <Button>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-pin-map-fill" viewBox="0 0 16 16">
@@ -26,11 +30,10 @@ function AttachFiles(props){
                                 </Button>
                             </ButtonGroup>
                         </ButtonToolbar>
-
                     </Popover.Body>
                 </Popover>
             }>
-            <Button variant="primary" id="button-addon1">
+            <Button onClick={() => {if (appearance){setAppearance(false)} else {setAppearance(true)}}} variant="primary" id="button-addon1">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-paperclip" viewBox="0 0 16 16">
                     <path d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3 0V5a.5.5 0 0 1 1 0v7a.5.5 0 0 0 1 0V3a1.5 1.5 0 1 0-3 0v9a2.5 2.5 0 0 0 5 0V5a.5.5 0 0 1 1 0v7a3.5 3.5 0 1 1-7 0V3z"/>
                 </svg>
