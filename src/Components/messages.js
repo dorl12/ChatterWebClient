@@ -5,6 +5,7 @@ import ross from '../ross.jpg';
 import woman1 from '../woman1.jpg';
 import lisa from '../lisa.jpg';
 import video_ex from '../video_ex.mp4';
+import RossRec from '../RossRec.m4a';
 
 let messages = [{user: "or",
                 chats: [{name: "Yotam Levin", image: man1, history:
@@ -30,7 +31,7 @@ let messages = [{user: "or",
                 {name: "Ross Geller", image: ross, history:
                     [{sender: false, text: "DIVORCE RULES!!", time: "16:48"}, 
                     {sender: true, text: "Are you sure Ross?", time: "16:51"},
-                    {sender: true, text: "You might wanna think about that again", time: "16:52"}]}]},
+                    {sender: true, text: "rec:" + RossRec, time: "16:52"}]}]},
 
                 {user: "yotam",
                 chats: [{name: "Or Drukman", image: man3, history:
@@ -56,7 +57,7 @@ let messages = [{user: "or",
                 {name: "Ross Geller", image: ross, history:
                     [{sender: false, text: "DIVORCE RULES!!", time: "16:48"}, 
                     {sender: true, text: "Are you sure Ross?", time: "16:51"},
-                    {sender: true, text: "You might wanna think about that again", time: "16:52"}]}]},
+                    {sender: true, text: "rec:" + RossRec, time: "16:52"}]}]},
 
                 {user: "lisa",
                 chats: [{name: "Or Drukman", image: man3, history:
@@ -82,7 +83,7 @@ let messages = [{user: "or",
                 {name: "Ross Geller", image: ross, history:
                     [{sender: false, text: "DIVORCE RULES!!", time: "16:48"}, 
                     {sender: true, text: "Are you sure Ross?", time: "16:51"},
-                    {sender: true, text: "You might wanna think about that again", time: "16:52"}]}]},
+                    {sender: true, text: "rec:" + RossRec, time: "16:52"}]}]},
 
                 {user: "ross",
                 chats: [{name: "Or Drukman", image: man3, history:
@@ -108,7 +109,7 @@ let messages = [{user: "or",
                 {name: "Lisa Kudrow", image: lisa, history:
                     [{sender: false, text: "DIVORCE RULES!!", time: "16:48"}, 
                     {sender: true, text: "Are you sure Ross?", time: "16:51"},
-                    {sender: true, text: "You might wanna think about that again", time: "16:52"}]}]},
+                    {sender: true, text: "rec:" + RossRec, time: "16:52"}]}]},
 
                 {user: "gilad",
                 chats: [{name: "Or Drukman", image: man3, history:
@@ -134,7 +135,7 @@ let messages = [{user: "or",
                 {name: "Lisa Kudrow", image: lisa, history:
                     [{sender: false, text: "DIVORCE RULES!!", time: "16:48"}, 
                     {sender: true, text: "Are you sure Ross?", time: "16:51"},
-                    {sender: true, text: "You might wanna think about that again", time: "16:52"}]}]},
+                    {sender: true, text: "rec:" + RossRec, time: "16:52"}]}]},
 
                 {user: "adi",
                 chats: [{name: "Or Drukman", image: man3, history:
@@ -160,7 +161,7 @@ let messages = [{user: "or",
                 {name: "Lisa Kudrow", image: lisa, history:
                     [{sender: false, text: "DIVORCE RULES!!", time: "16:48"}, 
                     {sender: true, text: "Are you sure Ross?", time: "16:51"},
-                    {sender: true, text: "You might wanna think about that again", time: "16:52"}]}]},
+                    {sender: true, text: "rec:" + RossRec, time: "16:52"}]}]},
 ];
 
 

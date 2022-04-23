@@ -12,6 +12,8 @@ function MessageItem({sender, text, time}){
             return (<img className="messageImage" src={text.slice(4)}></img>);
         } else if(text.slice(0,4)=="vid:"){
             return (<video className="messageVideo" src={text.slice(4)} controls></video>);
+        } else if(text.slice(0,4)=="rec:"){
+            return (<audio className="messageAudio" src={text.slice(4)} controls></audio>);
         }
         arr = "myMessage w-25 bg-light bg-gradient border"
         return text;

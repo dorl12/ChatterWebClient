@@ -8,6 +8,8 @@ function ChatItem(props){
             return ("~Image~");
         } else if(lastMessage.slice(0,4)=="vid:") {
             return ("~Video~");
+        } else if(lastMessage.slice(0,4)=="rec:") {
+            return ("~Audio~");
         }
         let messageLen = lastMessage.length
         if (messageLen > 30) {

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import {Button, Modal, Form} from 'react-bootstrap';
 import Helpers from '../../Logic/helpers';
 
@@ -8,14 +8,86 @@ function AddRecording(props){
     const [record, setRecord] = useState({});
 
     const handleClose = () => {setShow(false); props.setAppearance(false);};
-    const handleShow = () => setShow(true);
+    const handleShow = () => {getAccess(); setShow(true)};
     
     function handleChange(event){
-        const files = event.target.files
-        setRecord(URL.createObjectURL(files[0]))
+        // const files = event.target.files
+        // setRecord(URL.createObjectURL(files[0]))
         handleClose()
-        //Helpers.sendMessage(props.user, "<rec src=" + image + "></rec>", props.setRefreshed, props.setInput)
+        if (recording.url != "") {
+            Helpers.sendMessage(props.user, props.contact, "rec:" + recording.url, props.setRefreshed, props.setInput)
+        }
     }
+
+    const [stream, setStream] = useState({
+        access: false,
+        recorder: null,
+        error: ""
+      });
+    
+    const [recording, setRecording] = useState({
+    active: false,
+    available: false,
+    url: ""
+    });
+
+    const chunks = useRef([]);
+
+    function getAccess() {
+    navigator.mediaDevices
+        .getUserMedia({ audio: true })
+        .then((mic) => {
+        let mediaRecorder;
+
+        try {
+            mediaRecorder = new MediaRecorder(mic, {
+            mimeType: "audio/webm"
+            });
+        } catch (err) {
+            console.log(err);
+        }
+
+        const track = mediaRecorder.stream.getTracks()[0];
+        track.onended = () => console.log("ended");
+
+        mediaRecorder.onstart = function () {
+            setRecording({
+            active: true,
+            available: false,
+            url: ""
+            });
+        };
+
+        mediaRecorder.ondataavailable = function (e) {
+            console.log("data available");
+            chunks.current.push(e.data);
+        };
+
+        mediaRecorder.onstop = async function () {
+            console.log("stopped");
+
+            const url = URL.createObjectURL(chunks.current[0]);
+            chunks.current = [];
+
+            setRecording({
+            active: false,
+            available: true,
+            url
+            });
+        };
+
+        setStream({
+            ...stream,
+            access: true,
+            recorder: mediaRecorder
+        });
+        })
+        .catch((error) => {
+        console.log(error);
+        setStream({ ...stream, error });
+        });
+    }
+    
 
     return (
         <>
@@ -27,14 +99,26 @@ function AddRecording(props){
             </Button>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Please choose a file</Modal.Title>
+                    <Modal.Title>Please record your message</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form.Group controlId="formFile" className="mb-3">
-                        <Form.Control type="file" onChange={handleChange}/>
+                        <div className="audio-container">
+                            <button
+                                className={recording.active ? "active rounded" : "rounded"}
+                                onClick={() => !recording.active && stream.recorder.start()}
+                            >
+                                Start Recording
+                            </button>
+                            <button className="rounded" onClick={() => stream.recorder.stop()}>Stop Recording</button>
+                            {recording.available && <audio controls src={recording.url} />}
+                        </div>
                     </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
+                    <Button variant="primary" onClick={handleChange}>
+                        Send
+                    </Button>
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
@@ -43,5 +127,7 @@ function AddRecording(props){
         </>
     )
 }
+//<Form.Control type="file" onChange={handleChange}/>
+
 
 export default AddRecording;

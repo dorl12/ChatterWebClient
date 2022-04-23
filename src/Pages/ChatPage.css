@@ -55,3 +55,7 @@ img {
 .padded {
     margin-top: 20px;
 }
+
+.active {
+    background-color: red;
+}
