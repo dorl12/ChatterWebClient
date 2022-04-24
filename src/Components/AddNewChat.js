@@ -17,17 +17,51 @@ function AddNewChat(props){
         var position = Helpers.findNumOfUser(props.username)
         var image = ""
         var i;
+        var isExist=0
         for(i=0; i < allUsers.length; i++){
             if(allUsers[i].username == input) {
-                image = allUsers[i].image
-                break
+                if(allUsers[i].username!=props.username){
+                    image = allUsers[i].image
+                    isExist=1
+                    break
+                } else {
+                    isExist=2
+                }
             }
         }
-        let obj = {name: allUsers[i].nickname, image: image, history: []}
-        messages[position].chats.push(obj);
-        props.setChange((prev) => {return !prev});
-        setInput("")
+        if(isExist==1) {
+            var nick = Helpers.getNickname(input)
+            for(var j=0; j < messages[position].chats.length; j++) {
+                if(nick == messages[position].chats[j].name) {
+                    isExist = 3;
+                }
+            }
+        }
+        if(isExist==1) {
+            let obj = {name: allUsers[i].nickname, image: image, history: []}
+            messages[position].chats.unshift(obj);
+            props.setChange((prev) => {return !prev});
+            setInput("")
+            setErrorMessage('User added!')
+        } else if(isExist==0) {
+            setInput("")
+            setErrorMessage('User does not exist!');
+        } else if(isExist==2) {
+            setInput("")
+            setErrorMessage('You can not add chat with yourself!');
+        } else {
+            setInput("") //isExist=3
+            setErrorMessage('User alreadt exist in chats!');
+        }
+        
     }
+
+    function clearMassage() {
+        setErrorMessage('');
+    }
+
+    const [errorMessage, setErrorMessage] = useState('');
+
 
     return (
         <div className="modal fade" id="addChat" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -41,9 +75,10 @@ function AddNewChat(props){
                     <FormControl placeholder="Contact Identifier" type="text" onChange={handleChange} value={input}></FormControl>
                 </div>
                 <div className="modal-footer">
-                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={addContact}>Apply</button>
+                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={clearMassage}>Close</button>
+                    <button type="button" className="btn btn-primary" onClick={addContact}>Apply</button>
                 </div>
+                {errorMessage && (<p className="error"> {errorMessage} </p>)}
                 </div>
             </div>
         </div>

@@ -12,7 +12,7 @@ import lisa from './lisa.jpg';
     image: man3},
 
     {username: "yotam",
-    password: "y123",
+    password: "yotam123",
     nickname: "Yotam Levin",
     image: man1},
 
@@ -27,7 +27,7 @@ import lisa from './lisa.jpg';
     image: ross},
 
     {username: "gilad",
-    password: "gil123",
+    password: "gilad123",
     nickname: "Gilad Ashrov",
     image: man2},
 

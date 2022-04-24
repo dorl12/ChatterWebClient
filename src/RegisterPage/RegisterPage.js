@@ -4,6 +4,7 @@ import './RegisterPage.css';
 import { Link } from 'react-router-dom';
 import { useHistory } from "react-router-dom";
 import messages from '../Components/messages';
+import BlankUser from '../BlankUser.png';
 
 function RegisterPage(props) {
     const [RegisterData, setRegisterData] = React.useState({
@@ -11,7 +12,7 @@ function RegisterPage(props) {
         password: "",
         repeatPassword: "",
         nickname: "",
-        image: {}
+        image: BlankUser
     })
 
     let history = useHistory();
@@ -24,8 +25,6 @@ function RegisterPage(props) {
         }))
     }
     
-    console.log(RegisterData);
-
     const [userValid, setUserValid] = React.useState(true)
     const [passwordValid, setpasswordValid] = React.useState(true)
     const [repeatPasswordValid, setrepeatPasswordValid] = React.useState(true)
@@ -72,7 +71,6 @@ function RegisterPage(props) {
     function finalCheck() {
         if(userValid && passwordValid && repeatPasswordValid && nicknameValid) {
             let flag = findIfUsernameExist();
-            console.log(" flag : " + flag);
             if(flag) {
                 setregisterValid(false);
             } else {
@@ -83,7 +81,6 @@ function RegisterPage(props) {
                     chats: []
                 })
                 history.push("/chatPage");
-                console.log("Chats from register!")
                 props.updateUser(RegisterData.username);
             }
         }

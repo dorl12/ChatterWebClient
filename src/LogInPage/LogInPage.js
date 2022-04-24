@@ -59,7 +59,6 @@ function LogInPage(props) {
             if(user.username === loginData.username && user.password === loginData.password) {
                 flag = true;
             }
-            console.log(user);
         });
         return flag;
     }
@@ -99,4 +98,3 @@ function LogInPage(props) {
 }
 
 export default LogInPage;
-//onClick={ ({history}) => { if(logInValid) {history.push("/chatPage")} }}

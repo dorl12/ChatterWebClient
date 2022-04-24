@@ -56,6 +56,9 @@ export default class Helpers{
             let name = messages[position].chats[i].name;
             if (name==contact) {
                 messages[position].chats[i].history.push(obj);
+                var updateChatLocation = messages[position].chats[i]
+                messages[position].chats.splice(i, 1)
+                messages[position].chats.unshift(updateChatLocation)
                 setRefreshed((prev) => {return !prev})
                 setInput("");
                 break;
