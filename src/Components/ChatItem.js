@@ -4,6 +4,13 @@ function ChatItem(props){
 
     function shortenText(){
         let lastMessage = props.history[props.history.length - 1].text
+        if (lastMessage.slice(0,4)=="img:"){
+            return ("~Image~");
+        } else if(lastMessage.slice(0,4)=="vid:") {
+            return ("~Video~");
+        } else if(lastMessage.slice(0,4)=="rec:") {
+            return ("~Audio~");
+        }
         let messageLen = lastMessage.length
         if (messageLen > 30) {
             lastMessage = lastMessage.slice(0, 30) + "..."
@@ -14,14 +21,19 @@ function ChatItem(props){
     return (
         <div className="container" onClick={() => props.setContact(props.name)}>
             <div className="row">
-                <div className="col-2">
+                <div className="col-1">
                     <img src={props.image} alt={props.name}></img>
                 </div>
-                <div className="col border border-white rounded bg-secondary">
+                <div className="col">
                     <div className="bold">
                         {props.name}
                     </div>
-                    {props.history.length == 0 ? "" : shortenText() + ", time: " + props.history[props.history.length - 1].time}
+                    <div>
+                        {props.history.length == 0 ? "" : shortenText()}
+                    </div>
+                    <div>
+                        {props.history.length == 0 ? "" : props.history[props.history.length - 1].time}
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,6 +1,4 @@
-.BoundingBox {
-    position: absolute;
-}
+
 
 img {
     border-radius: 50%;
@@ -10,4 +8,54 @@ img {
 
 .bold {
     font-weight: bold;
+}
+
+.bottom {
+    bottom: 0vh !important;
+    width: 100%;
+}
+
+.messageImage {
+    border-radius: 0%;
+    width: 50%;
+    height: auto;
+}
+
+.messageVideo {
+    width: 70%;
+    height: auto;
+}
+
+.sideBarIcons {
+    padding-right: 10%;
+    padding-top: 3%;
+}
+
+.fullPage {
+    max-height: 100%;
+}
+
+.scroller {
+    height: 85vh;
+}
+
+.content-bg {
+    background-color: rgb(0, 92, 100);
+}
+
+.bbb{
+    border-radius: 5px;
+    box-shadow: 0px 5px 7px rgba(0, 0, 0, 0.6);
+}
+
+.contactColor {
+    background-color: rgba(148, 255, 255, 0.991);
+}
+
+.padded {
+    margin-top: 20px;
+}
+
+.active {
+    background-color: red;
 }

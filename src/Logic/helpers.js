@@ -1,39 +1,64 @@
 import React from "react";
+import allUsers from "../allUsers";
 import messages from "../Components/messages";
 
-function findChats(name) {
-    if (name=="Empty") {
-        return [];
-    }
-    for (let i=0; i < messages.length; i++) {
-        if (messages[i].name==name) {
-            return messages[i].history;
-        }
-    }
-}
 
-class Helpers{
+export default class Helpers{
 
     constructor(){};
-
-    static findChats(name) {
-        if (name=="Empty") {
+    
+    static findChats(user, chat) {
+        if (chat=="Empty") {
             return [];
         }
-        for (let i=0; i < messages.length; i++) {
-            if (messages[i].name==name) {
-                return messages[i].history;
+        var position = Helpers.findNumOfUser(user);
+        for (let i=0; i < messages[position].chats.length; i++) {
+            if (messages[position].chats[i].name==chat) {
+                return messages[position].chats[i].history;
             }
         }
     }
-    
-    static sendMessage(user, text, setRefreshed, setInput) {
-        var now = new Date();
-        let obj = {sender: true, text: text, time: now.getHours() + ':' + now.getMinutes()}
+
+    static findNumOfUser(user) {
         for (let i=0; i < messages.length; i++) {
-            let name = messages[i].name;
-            if (name==user) {
-                messages[i].history.push(obj);
+            if (messages[i].user==user) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    static getNickname(user) {
+        for (let i = 0; i < allUsers.length; i++) {
+            if (allUsers[i].username == user) {
+                return (allUsers[i].nickname);
+            }
+        }
+    }
+
+
+    static sendMessage(user, contact, text, setRefreshed, setInput) {
+        if (text.length<1) {
+            return;
+        }
+        var now = new Date();
+        var hours = now.getHours()
+        if (hours < 10) {
+            hours = '0' + hours
+        }
+        var minutes = now.getMinutes()
+        if (minutes < 10) {
+            minutes = '0' + minutes
+        }
+        let obj = {sender: true, text: text, time: hours + ':' + minutes}
+        var position = Helpers.findNumOfUser(user)
+        for (let i=0; i < messages[position].chats.length; i++) {
+            let name = messages[position].chats[i].name;
+            if (name==contact) {
+                messages[position].chats[i].history.push(obj);
+                var updateChatLocation = messages[position].chats[i]
+                messages[position].chats.splice(i, 1)
+                messages[position].chats.unshift(updateChatLocation)
                 setRefreshed((prev) => {return !prev})
                 setInput("");
                 break;
@@ -41,5 +66,3 @@ class Helpers{
         }
     }
 }
-
-export default findChats;

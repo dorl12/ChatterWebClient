@@ -1,23 +1,35 @@
 import React from 'react';
 import './App.css';
-import ChatPage from './ChatPage/ChatPage';
+import LogInPage from './LogInPage/LogInPage';
 import Pages from './Pages';
+import RegisterPage from './RegisterPage/RegisterPage';
+import ChatPage from "./Pages/ChatPage"
+import { BrowserRouter ,Route, Switch } from 'react-router-dom';
 
 function App() {
-  //</ChatPage><Pages handleClick={changePage} isLogin={isLoginPage}/>
-//<ChatPage/>
-  const [isLoginPage, setPage] = React.useState(
-    true
-    )
+  const [userName, setUser] = React.useState("Empty")
 
-  function changePage() {
-    setPage(prev => !prev)
+  function updateUser(newName) {
+    setUser(newName)
   }
 
   return (
     <div className="App">
-      <Pages handleClick={changePage} isLogin={isLoginPage}/>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/">
+            <LogInPage updateUser={updateUser}/>
+          </Route>
+          <Route path="/register">
+            <RegisterPage updateUser={updateUser}/>
+          </Route>
+          <Route path="/chatPage">
+            <ChatPage username={userName}/>
+          </Route>
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }
 export default App;
+//<Pages handleClick={changePage} isLogin={isLoginPage}/>

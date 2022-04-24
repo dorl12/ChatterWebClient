@@ -1,14 +1,17 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+//import ReactDOM from 'react-dom/client';
 import allUsers from '../allUsers';
 import './LogInPage.css';
-
+import { Link } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 
 function LogInPage(props) {
     const [loginData, setLoginData] = React.useState({
         username: "",
         password: ""
     })
+
+    let history = useHistory();
 
     function handleChange(event) {
         const { name, value } = event.target
@@ -36,14 +39,15 @@ function LogInPage(props) {
             setpasswordValid(true);
         }
         if(userValid && passwordValid) {
-            console.log("aas");
             let flag = findUsernameAndPassword();
-            console.log(" flag : " + flag);
             if(flag) {
                 setlogInValid(true);
+                history.push("/chatPage");
+                props.updateUser(loginData.username);
             } else {
                 setlogInValid(false);
-                //move to next page
+                
+                
             }
             
         }
@@ -55,7 +59,6 @@ function LogInPage(props) {
             if(user.username === loginData.username && user.password === loginData.password) {
                 flag = true;
             }
-            console.log(user);
         });
         return flag;
     }
@@ -63,7 +66,7 @@ function LogInPage(props) {
 
     return (
         <div id="loginArea">
-            <h1 className="display-3" id="welcomLogin">Welcom to Login Page</h1>
+            <h1 className="display-3" id="welcomLogin">Welcome to Login Page</h1>
             <form onSubmit={handleSubmit}>
                 <div className="row mb-3">
                     <label htmlFor="inputUsername3" className="col-sm-2 col-form-label">Username</label>
@@ -87,7 +90,7 @@ function LogInPage(props) {
                 <button type="submit" className="btn btn-primary" id="loginButton">Login</button>
                 <div>{!logInValid && <small className="invalid--data">Username or password incorrect</small>}</div>
                 <div id="registerdHelpBlock" className="form-text">
-                    Not registerd? <a className="click--here" onClick={props.handleClick}>Click here</a> to register.
+                    Not registerd? <Link className="click--here" to="/register">Click here</Link> to register.
                 </div>
             </form>
         </div>

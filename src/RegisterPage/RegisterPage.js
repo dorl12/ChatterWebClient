@@ -1,8 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
 import allUsers from '../allUsers';
 import './RegisterPage.css';
-
+import { Link } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
+import messages from '../Components/messages';
+import BlankUser from '../BlankUser.png';
 
 function RegisterPage(props) {
     const [RegisterData, setRegisterData] = React.useState({
@@ -10,8 +12,10 @@ function RegisterPage(props) {
         password: "",
         repeatPassword: "",
         nickname: "",
-        image: {}
+        image: BlankUser
     })
+
+    let history = useHistory();
 
     function handleChange(event) {
         const { name, value, type, files} = event.target
@@ -21,19 +25,18 @@ function RegisterPage(props) {
         }))
     }
     
-    console.log(RegisterData);
-
     const [userValid, setUserValid] = React.useState(true)
     const [passwordValid, setpasswordValid] = React.useState(true)
     const [repeatPasswordValid, setrepeatPasswordValid] = React.useState(true)
     const [nicknameValid, setnicknamerValid] = React.useState(true)
     const [registerValid, setregisterValid] = React.useState(true)
 
-    console.log(passwordValid)
+
     function handleSubmit(event) {
         event.preventDefault()
         if (RegisterData.username.length === 0) {
             setUserValid(false)
+            return
         } else {
             setUserValid(true)
         }
@@ -44,6 +47,7 @@ function RegisterPage(props) {
             if (!(matchPattern != null) || !(/[a-zA-Z]+/.test(RegisterData.password))) {
                 console.log('The input string not contain numbers');
                 setpasswordValid(false);
+                return
             } else {
                 setpasswordValid(true)
             }
@@ -51,28 +55,38 @@ function RegisterPage(props) {
 
         if (RegisterData.password !== RegisterData.repeatPassword) {
             setrepeatPasswordValid(false)
+            return
         } else {
             setrepeatPasswordValid(true)
         }
         if (RegisterData.nickname.length === 0) {
             setnicknamerValid(false)
+            return
         } else {
             setnicknamerValid(true)
         }
-
+        finalCheck();
+    }
+    
+    function finalCheck() {
         if(userValid && passwordValid && repeatPasswordValid && nicknameValid) {
             let flag = findIfUsernameExist();
-            console.log(" flag : " + flag);
             if(flag) {
                 setregisterValid(false);
             } else {
+
                 setregisterValid(true);
                 allUsers.push(RegisterData);
-                //move to next page
+                messages.push({user: RegisterData.username, 
+                    chats: []
+                })
+                history.push("/chatPage");
+                props.updateUser(RegisterData.username);
             }
         }
+        console.log(allUsers)
     }
-    
+
     function findIfUsernameExist() {
         let flag = false;
         allUsers.forEach(user => {
@@ -86,7 +100,7 @@ function RegisterPage(props) {
 
     return (
         <div id="registerArea">
-            <h1 className="display-3" id="welcomRegister">Welcom to Register Page</h1>
+            <h1 className="display-3" id="welcomRegister">Welcome to Register Page</h1>
             <form onSubmit={handleSubmit}>
                 <div className="row mb-3">
                     <label htmlFor="inputUsername3" className="col-sm-2 col-form-label">Username</label>
@@ -107,9 +121,9 @@ function RegisterPage(props) {
                 </div>
 
                 <div className="row mb-3">
-                    <label htmlFor="inputRepeatPassword3" className="col-sm-2 col-form-label">Re Password</label>
+                    <label htmlFor="inputRepeatPassword3" className="col-sm-2 col-form-label">Verify Password</label>
                     <div className="col-sm-10">
-                        <input type="password" className="form-control" placeholder="Repeat Password" id="inputRepeatPassword3"
+                        <input type="password" className="form-control" placeholder="Verify Password" id="inputRepeatPassword3"
                             name="repeatPassword" onChange={handleChange} value={RegisterData.repeatPassword}></input>
                         <div>{!repeatPasswordValid && <small className="invalid--data">Password doesn't mach!</small>}</div>
                     </div>
@@ -134,7 +148,7 @@ function RegisterPage(props) {
                 <button type="submit" className="btn btn-primary" id="RegisterButton">Register</button>
                 <div>{!registerValid && <small className="invalid--data">Username already exist, pls try different one</small>}</div>
                 <div id="registerdHelpBlock" className="form-text">
-                    Already registerd? <a className="click--here" onClick={props.handleClick}>Click here</a> to login.
+                    Already registerd? <Link className="click--here" to="/">Click here</Link> to login.
                 </div>
             </form>
         </div>
