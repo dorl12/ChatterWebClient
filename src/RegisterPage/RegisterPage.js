@@ -100,14 +100,14 @@ function RegisterPage(props) {
 
     return (
         <div id="registerArea">
-            <h1 className="display-3" id="welcomRegister">Welcome to Register Page</h1>
+            <h1 className="display-3" id="welcomRegister">Registration</h1>
             <form onSubmit={handleSubmit}>
                 <div className="row mb-3">
                     <label htmlFor="inputUsername3" className="col-sm-2 col-form-label">Username</label>
                     <div className="col-sm-10">
                         <input type="Username" className="form-control" placeholder="Enter Username" id="inputUsername3"
                             name="username" onChange={handleChange} value={RegisterData.username}></input>
-                        <div>{!userValid && <small className="invalid--data">Enter Username!</small>}</div>
+                        <div>{!userValid && <small className="invalid--data">Please enter a Username!</small>}</div>
                     </div>
                 </div>
 
@@ -116,7 +116,7 @@ function RegisterPage(props) {
                     <div className="col-sm-10">
                         <input type="password" className="form-control" placeholder="Enter Password" id="inputPassword3"
                             name="password" onChange={handleChange} value={RegisterData.password}></input>
-                        <div>{!passwordValid && <small className="invalid--data">Password must contains numbers and characters!</small>}</div>
+                        <div>{!passwordValid && <small className="invalid--data">Password must contain both numbers and characters!</small>}</div>
                     </div>
                 </div>
 
@@ -125,7 +125,7 @@ function RegisterPage(props) {
                     <div className="col-sm-10">
                         <input type="password" className="form-control" placeholder="Verify Password" id="inputRepeatPassword3"
                             name="repeatPassword" onChange={handleChange} value={RegisterData.repeatPassword}></input>
-                        <div>{!repeatPasswordValid && <small className="invalid--data">Password doesn't mach!</small>}</div>
+                        <div>{!repeatPasswordValid && <small className="invalid--data">Password doesn't match!</small>}</div>
                     </div>
                 </div>
 
@@ -134,7 +134,7 @@ function RegisterPage(props) {
                     <div className="col-sm-10">
                         <input type="Nickname" className="form-control" placeholder="Enter Nickname" id="inputNickname3"
                             name="nickname" onChange={handleChange} value={RegisterData.nickname}></input>
-                        <div>{!nicknameValid && <small className="invalid--data">Enter Nickname!</small>}</div>
+                        <div>{!nicknameValid && <small className="invalid--data">Please enter a Nickname!</small>}</div>
                     </div>
                 </div>
 
@@ -146,7 +146,7 @@ function RegisterPage(props) {
 
                 <div className="mb-3"></div>
                 <button type="submit" className="btn btn-primary" id="RegisterButton">Register</button>
-                <div>{!registerValid && <small className="invalid--data">Username already exist, pls try different one</small>}</div>
+                <div>{!registerValid && <small className="invalid--data">Username already exists, please choose a different one</small>}</div>
                 <div id="registerdHelpBlock" className="form-text">
                     Already registerd? <Link className="click--here" to="/">Click here</Link> to login.
                 </div>
