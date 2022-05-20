@@ -4,6 +4,7 @@ import allUsers from '../allUsers';
 import './LogInPage.css';
 import { Link } from 'react-router-dom';
 import { useHistory } from "react-router-dom";
+import Token from '../Token.js';
 
 function LogInPage(props) {
     const [loginData, setLoginData] = React.useState({
@@ -25,44 +26,60 @@ function LogInPage(props) {
     const [passwordValid, setpasswordValid] = React.useState(true)
     const [logInValid, setlogInValid] = React.useState(true)
 
-    console.log(userValid)
+    // console.log(userValid)
+    // function handleSubmit(event) {
+    //     event.preventDefault()
+    //     if (loginData.username.length === 0) {
+    //         setUserValid(false);
+    //     } else {
+    //         setUserValid(true);
+    //     }
+    //     if(loginData.password.length === 0) {
+    //         setpasswordValid(false);
+    //     } else {
+    //         setpasswordValid(true);
+    //     }
+    //     if(userValid && passwordValid) {
+    //         let flag = findUsernameAndPassword();
+    //         if(flag) {
+    //             setlogInValid(true);
+    //             history.push("/chatPage");
+    //             props.updateUser(loginData.username);
+    //         } else {
+    //             setlogInValid(false);
+                
+                
+    //         }
+            
+    //     }
+    // }
+
+    // function findUsernameAndPassword() {
+    //     let flag = false;
+    //     allUsers.forEach(user => {
+    //         if(user.username === loginData.username && user.password === loginData.password) {
+    //             flag = true;
+    //         }
+    //     });
+    //     return flag;
+    // }
+
     function handleSubmit(event) {
         event.preventDefault()
-        if (loginData.username.length === 0) {
-            setUserValid(false);
-        } else {
-            setUserValid(true);
-        }
-        if(loginData.password.length === 0) {
-            setpasswordValid(false);
-        } else {
-            setpasswordValid(true);
-        }
-        if(userValid && passwordValid) {
-            let flag = findUsernameAndPassword();
-            if(flag) {
-                setlogInValid(true);
+        fetch('https://localhost:7267' + '/API/Login/' + loginData.username.toString() + '&' + loginData.password.toString(), {
+            method:"POST", 
+        }).then(res => {
+            res.text().then(t => {
+                Token.set(t)
+            })
+            if(res.ok) {
                 history.push("/chatPage");
                 props.updateUser(loginData.username);
             } else {
                 setlogInValid(false);
-                
-                
             }
-            
-        }
+        })
     }
-
-    function findUsernameAndPassword() {
-        let flag = false;
-        allUsers.forEach(user => {
-            if(user.username === loginData.username && user.password === loginData.password) {
-                flag = true;
-            }
-        });
-        return flag;
-    }
-   
 
     return (
         <div id="loginArea">

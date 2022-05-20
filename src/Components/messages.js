@@ -59,7 +59,7 @@ let messages = [{user: "or",
                     {sender: true, text: "Are you sure Ross?", time: "16:51"},
                     {sender: true, text: "rec:" + RossRec, time: "16:52"}]}]},
 
-                {user: "lisa",
+                {user: "dor",
                 chats: [{name: "Or Drukman", image: man3, history:
                     [{sender: true, text: "Hi, how are you doing?", time: "18:03"}, 
                     {sender: true, text: "Wanna play volleyball?", time: "18:03"},

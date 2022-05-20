@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ChatItem from './ChatItem';
 import AddNewChat from './AddNewChat';
 import messages from './messages';
@@ -6,25 +6,40 @@ import { ListGroup } from 'react-bootstrap';
 import allUsers from '../allUsers';
 import Helpers from '../Logic/helpers';
 import { useHistory } from "react-router-dom";
-
+import Token from '../Token';
+import GenericProfile from "../Generic-Profile.jpg";
 
 function ChatSideBar(props){
 
     let history = useHistory();
 
     const [change, setChange] = useState(false);
-    var position = Helpers.findNumOfUser(props.username);
-    //if username doesn't exist - in case of refreash
-    if(position == -1) {
-        history.push("/");
+    //var position = Helpers.findNumOfUser(props.username);
+    const [chatList, setChat] = useState([]);
+    //var contacts = "";
+    //var chatList;
+    useEffect(() => {
+        console.log(Token.get())
+        fetch('https://localhost:7267' + '/API/Contacts', {
+            method:"GET",
+            headers: {"Authorization":"Bearer " + Token.get()}
+        }).then(res => res.json()).then(res => setChat(res))
+    }, []
+    )
+// res.status is RETURN VALUE
 
-    } else {
-        const chatList = messages[position].chats.map((chat, key) => {
+   // if username doesn't exist - in case of refreash
+   //if(position == -1) {
+    //   history.push("/");
+    //} else {
+        //console.log(chatList);
+        const contactsList = chatList.map((chat, key) => {
             if (chat.name==props.contact) {
-                return (<ListGroup.Item as="li" active key={key}><ChatItem setContact={props.setContact} {...chat}></ChatItem></ListGroup.Item>)
+                return (<ListGroup.Item as="li" active key={key}><ChatItem setContact={props.setContact} contact={chat.id} name={chat.name} time={chat.lastdate.toString()} history={chat.last} ></ChatItem></ListGroup.Item>)
             }
-            return (<ListGroup.Item as="li" key={key}><ChatItem setContact={props.setContact} {...chat}></ChatItem></ListGroup.Item>)
-        });
+            return (<ListGroup.Item as="li" key={key}><ChatItem setContact={props.setContact} contact={chat.id} name={chat.name} time={chat.lastdate.toString()} history={chat.last}></ChatItem></ListGroup.Item>)
+        }
+        );
 
         function findImage() {
             for (let i=0; i < allUsers.length; i++) {
@@ -33,11 +48,12 @@ function ChatSideBar(props){
                 }
             }
         }
-
+    
 
         function exitIcon() {
             history.push("/");
         }
+    
         
         return(
             <div>
@@ -49,10 +65,10 @@ function ChatSideBar(props){
                         </svg>
                     </div>
                     <div className="col-1">
-                        <img src={findImage()} alt={props.username}></img>
+                        <img src={GenericProfile} alt={props.username}></img>
                     </div>
                     <div className="col">
-                        <h1>{Helpers.getNickname(props.username)}</h1>
+                        <h1>{props.username}</h1>
                     </div>
                     <div className="col-1 sideBarIcons">
                         <svg xmlns="http://www.w3.org/2000/svg" type="button" data-bs-toggle="modal" data-bs-target="#addChat" width="25" height="25" fill="currentColor" className="bi bi-person-plus-fill" viewBox="0 0 16 16">
@@ -63,13 +79,13 @@ function ChatSideBar(props){
                 </div>
                 <div className="overflow-auto scroller">
                     <ListGroup as="ul">
-                        {chatList}
+                        {contactsList}
                     </ListGroup>
                 </div>
             </div>
     
         )
-    }
+    //}
     
 }
 

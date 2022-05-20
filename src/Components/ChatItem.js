@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
+import GenericProfile from "../Generic-Profile.jpg";
 
 function ChatItem(props){
-
     function shortenText(){
-        let lastMessage = props.history[props.history.length - 1].text
+        let lastMessage = props.history
         if (lastMessage.slice(0,4)=="img:"){
             return ("~Image~");
         } else if(lastMessage.slice(0,4)=="vid:") {
@@ -19,10 +19,10 @@ function ChatItem(props){
     }
 
     return (
-        <div className="container" onClick={() => props.setContact(props.name)}>
+        <div className="container" onClick={() => props.setContact(props.contact)}>
             <div className="row">
                 <div className="col-1">
-                    <img src={props.image} alt={props.name}></img>
+                    <img src={GenericProfile} alt={props.name}></img>
                 </div>
                 <div className="col">
                     <div className="bold">
@@ -32,7 +32,7 @@ function ChatItem(props){
                         {props.history.length == 0 ? "" : shortenText()}
                     </div>
                     <div>
-                        {props.history.length == 0 ? "" : props.history[props.history.length - 1].time}
+                        {props.history.length == 0 ? "" : props.time}
                     </div>
                 </div>
             </div>

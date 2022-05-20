@@ -1,15 +1,28 @@
-import React, {useState} from 'react';
 import MessageItem from './MessageItem';
 import InputBar from './InputBar';
 import Helpers from '../Logic/helpers';
 import { Container, Row } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import Token from '../Token';
 
 function ChatContent(props){
 
-    const cont = Helpers.findChats(props.username, props.contact);
+    //const cont = Helpers.findChats(props.username, props.contact);
+    const [messagsList, setMessags] = useState([]);
+    const [counter, setCounter] = useState(1);
+    console.log(props.contact)
+    useEffect(() => {
+        console.log("fatching")
+        
+        fetch('https://localhost:7267' + '/API/Contacts/' + props.contact + '/Messages', {
+            method:"GET",
+            headers: {"Authorization":"Bearer " + Token.get()}
+        }).then(res => res.json()).then(res => setMessags(res))
+    }, [props.contact, counter]
+    )
 
-    const chatContent = cont.map((message, key) => {
-        return (<MessageItem {...message} key={key}></MessageItem>)
+    const chatContent = messagsList.map((message, key) => {
+        return (<MessageItem sender={message.sent} text={message.content} time={message.created.toString()} key={key}></MessageItem>)
     });
 
     return (

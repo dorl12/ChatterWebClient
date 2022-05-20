@@ -14,6 +14,8 @@ function ChatPage(props){
         if (contact=="Empty") {
             return (<div></div>);
         } else {
+            console.log("HERE")
+
             return (<ChatContent setRefreshed={setRefreshed} username={props.username} contact={contact}></ChatContent>);
         }
     }
