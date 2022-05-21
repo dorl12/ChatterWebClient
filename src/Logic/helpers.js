@@ -83,14 +83,14 @@ export default class Helpers{
         if (text.length<1) {
             return;
         }
-        console.log(contactServer)
-    const transferData = {
+        //console.log(contactServer)
+        const transferData = {
             from: user,
             to: contact,
             content: text
         }
         
-        fetch('https://localhost:7267' + '/API/Transfer', {
+        fetch('https://' + contactServer + '/API/Transfer', {
             method:"post",
             headers: {"content-type": "application/json"},
             body: JSON.stringify(transferData),

@@ -24,10 +24,10 @@ function ChatSideBar(props){
             method:"GET",
             headers: {"Authorization":"Bearer " + Token.get()}
         }).then(res => res.json()).then(res => setChat(res))
-    }, [props.contact, props.refreshed, props.username]
+    }, [props.contact, props.refreshed, props.username, change]
     )
 // res.status is RETURN VALUE
-
+    console.log(props.username)
    // if username doesn't exist - in case of refreash
    //if(position == -1) {
     //   history.push("/");

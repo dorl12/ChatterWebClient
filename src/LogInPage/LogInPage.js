@@ -66,8 +66,14 @@ function LogInPage(props) {
 
     function handleSubmit(event) {
         event.preventDefault()
-        fetch('https://localhost:7267' + '/API/Login/' + loginData.username.toString() + '&' + loginData.password.toString(), {
+        const loginDataPost = {
+            id: loginData.username,
+            password: loginData.password
+        }
+        fetch('https://localhost:7267' + '/API/Login', {
             method:"POST", 
+            headers: {"content-type": "application/json"},
+            body: JSON.stringify(loginDataPost),
         }).then(res => {
             res.text().then(t => {
                 Token.set(t)
