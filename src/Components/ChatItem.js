@@ -13,7 +13,7 @@ function ChatItem(props){
         }
         let messageLen = lastMessage.length
         if (messageLen > 30) {
-            lastMessage = lastMessage.slice(0, 30) + "..."
+            lastMessage = lastMessage.substring(0, 30) + "..."
         }
         return lastMessage
     }
@@ -32,7 +32,7 @@ function ChatItem(props){
                         {props.history.length == 0 ? "" : shortenText()}
                     </div>
                     <div>
-                        {props.history.length == 0 ? "" : props.time}
+                        {props.history.length == 0 ? "" : props.time.substring(0, 19)}
                     </div>
                 </div>
             </div>

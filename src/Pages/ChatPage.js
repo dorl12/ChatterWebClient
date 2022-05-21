@@ -7,16 +7,14 @@ import useWindowDimensions from '../Logic/window';
 function ChatPage(props){
 
     const [contact, setContact] = useState("Empty");
+    const [contactServer, setContactServer] = useState("");
     const [refreshed, setRefreshed] = useState(false);
     const { height, width } = useWindowDimensions();
-
     function isEmpty() {
         if (contact=="Empty") {
             return (<div></div>);
         } else {
-            console.log("HERE")
-
-            return (<ChatContent setRefreshed={setRefreshed} username={props.username} contact={contact}></ChatContent>);
+            return (<ChatContent refreshed={refreshed} setRefreshed={setRefreshed} username={props.username} contact={contact} contactServer={contactServer}></ChatContent>);
         }
     }
 
@@ -25,7 +23,7 @@ function ChatPage(props){
                 <div className="container">
                     <div className="row">
                         <div className="vh-100 col-4 bg-light rounded overflow-auto">
-                            <ChatSideBar username={props.username} setContact={setContact} contact={contact}></ChatSideBar>
+                            <ChatSideBar username={props.username} refreshed={refreshed} setContact={setContact} setContactServer={setContactServer} contact={contact}></ChatSideBar>
                         </div>
                         <div className="vh-100 col content-bg rounded">
                             {isEmpty()}
