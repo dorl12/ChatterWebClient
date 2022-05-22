@@ -75,6 +75,9 @@ function LogInPage(props) {
                 <div id="registerdHelpBlock" className="form-text">
                     Not registerd? <Link className="click--here" to="/register">Click here</Link> to register.
                 </div>
+                <div id="ratingPage" className="form-text">
+                    Wanna rate Chatter? <a className="click--here" href="https://localhost:7071/">Click here</a> to redirect.  
+                </div>
             </form>
         </div>
     );

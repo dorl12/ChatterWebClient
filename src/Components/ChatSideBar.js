@@ -10,6 +10,7 @@ function ChatSideBar(props){
 
     let history = useHistory();
 
+    const [nameOfUser, setNameOfUser] = useState("");
     const [change, setChange] = useState(false);
     const [chatList, setChat] = useState([]);
     useEffect(() => {
@@ -20,6 +21,18 @@ function ChatSideBar(props){
         }).then(res => res.json()).then(res => setChat(res))
     }, [props.contact, props.refreshed, props.username, change]
     )
+
+    useEffect(() => {
+        fetch('https://localhost:7267' + '/API/Users', {
+            method:"GET",
+            headers: {"Authorization":"Bearer " + Token.get()}
+        }).then(res => res.json()).then(res => setNameOfUser(res))
+    }, []
+    )
+
+
+// res.status is RETURN VALUE
+
     console.log(props.username)
         const contactsList = chatList.map((chat, key) => {
             if (chat.id==props.contact) {
@@ -34,7 +47,6 @@ function ChatSideBar(props){
             history.push("/");
         }
     
-        
         return(
             <div>
                 <AddNewChat username={props.username} setChange={setChange}></AddNewChat>
@@ -48,7 +60,7 @@ function ChatSideBar(props){
                         <img src={GenericProfile} alt={props.username}></img>
                     </div>
                     <div className="col">
-                        <h1>{props.username}</h1>
+                        <h1>{nameOfUser.name}</h1>
                     </div>
                     <div className="col-1 sideBarIcons">
                         <svg xmlns="http://www.w3.org/2000/svg" type="button" data-bs-toggle="modal" data-bs-target="#addChat" width="25" height="25" fill="currentColor" className="bi bi-person-plus-fill" viewBox="0 0 16 16">
