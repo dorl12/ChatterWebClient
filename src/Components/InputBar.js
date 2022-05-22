@@ -1,7 +1,6 @@
-import React, {useEffect, useState} from "react";
-import { FormControl , InputGroup, Button, OverlayTrigger, Popover, ButtonGroup, ButtonToolbar} from "react-bootstrap";
+import React, { useState } from "react";
+import { FormControl , InputGroup, Button } from "react-bootstrap";
 import AttachFiles from "./OverlayAttachment/AttachFiles";
-import messages from "./messages";
 import Helpers from "../Logic/helpers";
 
 function InputBar(props){
@@ -15,13 +14,9 @@ function InputBar(props){
 
     const handleKey = (event) => {
         if (event.key === 'Enter') {
-            //console.log(props.contactServer)
 
             Helpers.sendMessage(props.contact, input, props.setRefreshed, setInput)
             Helpers.sendTransfer(props.username, props.contact, props.contactServer, input, props.setRefreshed, setInput)
-            
-
-            
         }
     }
 

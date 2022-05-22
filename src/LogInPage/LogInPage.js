@@ -1,6 +1,4 @@
 import React from 'react';
-//import ReactDOM from 'react-dom/client';
-import allUsers from '../allUsers';
 import './LogInPage.css';
 import { Link } from 'react-router-dom';
 import { useHistory } from "react-router-dom";
@@ -25,45 +23,7 @@ function LogInPage(props) {
     const [userValid, setUserValid] = React.useState(true)
     const [passwordValid, setpasswordValid] = React.useState(true)
     const [logInValid, setlogInValid] = React.useState(true)
-
-    // console.log(userValid)
-    // function handleSubmit(event) {
-    //     event.preventDefault()
-    //     if (loginData.username.length === 0) {
-    //         setUserValid(false);
-    //     } else {
-    //         setUserValid(true);
-    //     }
-    //     if(loginData.password.length === 0) {
-    //         setpasswordValid(false);
-    //     } else {
-    //         setpasswordValid(true);
-    //     }
-    //     if(userValid && passwordValid) {
-    //         let flag = findUsernameAndPassword();
-    //         if(flag) {
-    //             setlogInValid(true);
-    //             history.push("/chatPage");
-    //             props.updateUser(loginData.username);
-    //         } else {
-    //             setlogInValid(false);
                 
-                
-    //         }
-            
-    //     }
-    // }
-
-    // function findUsernameAndPassword() {
-    //     let flag = false;
-    //     allUsers.forEach(user => {
-    //         if(user.username === loginData.username && user.password === loginData.password) {
-    //             flag = true;
-    //         }
-    //     });
-    //     return flag;
-    // }
-
     function handleSubmit(event) {
         event.preventDefault()
         const loginDataPost = {

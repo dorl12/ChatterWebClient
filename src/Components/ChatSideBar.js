@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ChatItem from './ChatItem';
 import AddNewChat from './AddNewChat';
-import messages from './messages';
 import { ListGroup } from 'react-bootstrap';
-import allUsers from '../allUsers';
-import Helpers from '../Logic/helpers';
 import { useHistory } from "react-router-dom";
 import Token from '../Token';
 import GenericProfile from "../Generic-Profile.jpg";
@@ -14,10 +11,7 @@ function ChatSideBar(props){
     let history = useHistory();
 
     const [change, setChange] = useState(false);
-    //var position = Helpers.findNumOfUser(props.username);
     const [chatList, setChat] = useState([]);
-    //var contacts = "";
-    //var chatList;
     useEffect(() => {
         console.log("fatching all contacts")
         fetch('https://localhost:7267' + '/API/Contacts', {
@@ -26,13 +20,7 @@ function ChatSideBar(props){
         }).then(res => res.json()).then(res => setChat(res))
     }, [props.contact, props.refreshed, props.username, change]
     )
-// res.status is RETURN VALUE
     console.log(props.username)
-   // if username doesn't exist - in case of refreash
-   //if(position == -1) {
-    //   history.push("/");
-    //} else {
-        //console.log(chatList);
         const contactsList = chatList.map((chat, key) => {
             if (chat.id==props.contact) {
                 props.setContactServer(chat.server)
@@ -41,15 +29,6 @@ function ChatSideBar(props){
             return (<ListGroup.Item as="li" key={key}><ChatItem setContact={props.setContact} contact={chat.id} name={chat.name} time={chat.lastdate.toString()} history={chat.last}></ChatItem></ListGroup.Item>)
         }
         );
-
-        function findImage() {
-            for (let i=0; i < allUsers.length; i++) {
-                if (props.username==allUsers[i].username){
-                    return (allUsers[i].image);
-                }
-            }
-        }
-    
 
         function exitIcon() {
             history.push("/");
@@ -85,9 +64,7 @@ function ChatSideBar(props){
                 </div>
             </div>
     
-        )
-    //}
-    
+        )    
 }
 
 export default ChatSideBar;

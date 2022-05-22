@@ -1,14 +1,9 @@
 import React, {useState} from "react";
-import { FormControl, FormLabel } from "react-bootstrap";
-import allUsers from "../allUsers";
-import Helpers from "../Logic/helpers";
-import messages from "./messages";
+import { FormControl } from "react-bootstrap";
 import Token from '../Token';
-
 
 function AddNewChat(props){
 
-    
     function clearMassage() {
         setErrorMessage("");
         setAddNewContactData({
@@ -20,17 +15,12 @@ function AddNewChat(props){
 
     const [errorMessage, setErrorMessage] = useState('');
 
-
-    //const [input, setInput] = useState("");
     const [addNewContactData, setAddNewContactData] = React.useState({
         username: "",
         nickname: "",
         server: ""
     })
-    // function handleChange(event){
-    //     let value = event.target.value
-    //     setInput(value);
-    // }
+
     function handleChange(event) {
         const { name, value } = event.target
         setAddNewContactData((addNewContactData) => ({
@@ -38,6 +28,7 @@ function AddNewChat(props){
             [name]: value
         }))
     }
+
     function addContact() {
         if (addNewContactData.username.length < 1 || addNewContactData.nickname.length < 1 || addNewContactData.server.length < 1) {
             setErrorMessage("All fields required!")
@@ -94,49 +85,6 @@ function AddNewChat(props){
             }
             }
         )
-        
-
-        // var position = Helpers.findNumOfUser(props.username)
-        // var image = ""
-        // var i;
-        // var isExist=0
-        // for(i=0; i < allUsers.length; i++){
-        //     if(allUsers[i].username == input) {
-        //         if(allUsers[i].username!=props.username){
-        //             image = allUsers[i].image
-        //             isExist=1
-        //             break
-        //         } else {
-        //             isExist=2
-        //         }
-        //     }
-        // }
-        // if(isExist==1) {
-        //     var nick = Helpers.getNickname(input)
-        //     for(var j=0; j < messages[position].chats.length; j++) {
-        //         if(nick == messages[position].chats[j].name) {
-        //             isExist = 3;
-        //         }
-        //     }
-        // }
-
-        // if(isExist==1) {
-        //     let obj = {name: allUsers[i].nickname, image: image, history: []}
-        //     messages[position].chats.unshift(obj);
-        //     props.setChange((prev) => {return !prev});
-        //     setInput("")
-        //     setErrorMessage('User added!')
-        // } else if(isExist==0) {
-        //     setInput("")
-        //     setErrorMessage('User does not exist!');
-        // } else if(isExist==2) {
-        //     setInput("")
-        //     setErrorMessage('You can not add chat with yourself!');
-        // } else {
-        //     setInput("") //isExist=3
-        //     setErrorMessage('User alreadt exist in chats!');
-        // }
-        
     }
 
     return (

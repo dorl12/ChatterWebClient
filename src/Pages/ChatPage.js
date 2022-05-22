@@ -11,7 +11,6 @@ function ChatPage(props){
     const [contact, setContact] = useState("Empty");
     const [contactServer, setContactServer] = useState("");
     const [refreshed, setRefreshed] = useState(false);
-    const { height, width } = useWindowDimensions();
 
     const [ connection, setConnection ] = useState(null);
     function isEmpty() {

@@ -1,13 +1,11 @@
 import MessageItem from './MessageItem';
 import InputBar from './InputBar';
-import Helpers from '../Logic/helpers';
 import { Container, Row } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
 import Token from '../Token';
 
 function ChatContent(props){
 
-    //const cont = Helpers.findChats(props.username, props.contact);
     const [messagsList, setMessags] = useState([]);
     const [counter, setCounter] = useState(1);
     useEffect(() => {

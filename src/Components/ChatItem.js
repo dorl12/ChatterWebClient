@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import GenericProfile from "../Generic-Profile.jpg";
 
 function ChatItem(props){
