@@ -41,7 +41,7 @@ function AddNewChat(props){
             server: addNewContactData.server
         }
         var firstFetchSuccessed = true;
-        fetch('https://localhost:7267' + '/API/Contacts', {
+        fetch('https://localhost:7267' + '/API/contacts', {
             method:"post",
             headers: {"content-type": "application/json",
                         "Authorization":"Bearer " + Token.get()},
@@ -69,7 +69,7 @@ function AddNewChat(props){
                     to: addNewContactData.username,
                     server: addNewContactData.server
                 }
-                fetch('https://' + addNewContactData.server + '/API/Invitations', {
+                fetch('https://' + addNewContactData.server + '/API/invitations', {
                     method:"post",
                     headers: {"content-type": "application/json"},
                     body: JSON.stringify(invitationData),

@@ -7,15 +7,14 @@ import Token from '../Token';
 function ChatContent(props){
 
     const [messagsList, setMessags] = useState([]);
-    const [counter, setCounter] = useState(1);
     useEffect(() => {
         console.log("fatching all Messages")
 
-        fetch('https://localhost:7267' + '/API/Contacts/' + props.contact + '/Messages', {
+        fetch('https://localhost:7267' + '/API/contacts/' + props.contact + '/messages', {
             method:"GET",
             headers: {"Authorization":"Bearer " + Token.get()}
         }).then(res => res.json()).then(res => setMessags(res))
-    }, [props.contact, props.refreshed, counter]
+    }, [props.contact, props.refreshed]
     )
 
     const chatContent = messagsList.map((message, key) => {

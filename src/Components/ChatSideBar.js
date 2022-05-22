@@ -14,7 +14,7 @@ function ChatSideBar(props){
     const [chatList, setChat] = useState([]);
     useEffect(() => {
         console.log("fatching all contacts")
-        fetch('https://localhost:7267' + '/API/Contacts', {
+        fetch('https://localhost:7267' + '/API/contacts', {
             method:"GET",
             headers: {"Authorization":"Bearer " + Token.get()}
         }).then(res => res.json()).then(res => setChat(res))

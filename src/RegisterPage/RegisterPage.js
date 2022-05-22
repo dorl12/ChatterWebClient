@@ -1,5 +1,4 @@
 import React from 'react';
-import allUsers from '../allUsers';
 import './RegisterPage.css';
 import { Link } from 'react-router-dom';
 import { useHistory } from "react-router-dom";
@@ -36,7 +35,7 @@ function RegisterPage(props) {
                 return
         }
 
-        fetch('https://localhost:7267' + '/API/Register/' + RegisterData.username.toString() + '&' + RegisterData.password.toString()
+        fetch('https://localhost:7267' + '/API/register/' + RegisterData.username.toString() + '&' + RegisterData.password.toString()
                 + '&' + RegisterData.repeatPassword.toString() + '&' + RegisterData.nickname.toString(), {
             method:"POST", 
         }).then(res => {

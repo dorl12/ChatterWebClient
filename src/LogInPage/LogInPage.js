@@ -20,8 +20,8 @@ function LogInPage(props) {
         }))
     }
 
-    const [userValid, setUserValid] = React.useState(true)
-    const [passwordValid, setpasswordValid] = React.useState(true)
+    const [userValid] = React.useState(true)
+    const [passwordValid] = React.useState(true)
     const [logInValid, setlogInValid] = React.useState(true)
                 
     function handleSubmit(event) {
@@ -30,7 +30,7 @@ function LogInPage(props) {
             id: loginData.username,
             password: loginData.password
         }
-        fetch('https://localhost:7267' + '/API/Login', {
+        fetch('https://localhost:7267' + '/API/login', {
             method:"POST", 
             headers: {"content-type": "application/json"},
             body: JSON.stringify(loginDataPost),

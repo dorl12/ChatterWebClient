@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import ChatSideBar from '../Components/ChatSideBar';
 import ChatContent from '../Components/ChatContent';
 import './ChatPage.css';
-import useWindowDimensions from '../Logic/window';
 import { HubConnectionBuilder, HttpTransportType } from '@microsoft/signalr';
 import Token from '../Token.js';
 
