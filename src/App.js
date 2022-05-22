@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import LogInPage from './LogInPage/LogInPage';
-import Pages from './Pages';
 import RegisterPage from './RegisterPage/RegisterPage';
 import ChatPage from "./Pages/ChatPage"
 import { BrowserRouter ,Route, Switch } from 'react-router-dom';
@@ -32,4 +31,3 @@ function App() {
   );
 }
 export default App;
-//<Pages handleClick={changePage} isLogin={isLoginPage}/>

@@ -1,6 +1,5 @@
 import MessageItem from './MessageItem';
 import InputBar from './InputBar';
-import Helpers from '../Logic/helpers';
 import { Container, Row } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
 import Token from '../Token';
@@ -10,15 +9,14 @@ function ChatContent(props){
     //const cont = Helpers.findChats(props.username, props.contact);
     const [nameOfContact, setNameOfContact] = useState("");
     const [messagsList, setMessags] = useState([]);
-    const [counter, setCounter] = useState(1);
     useEffect(() => {
         console.log("fatching all Messages")
 
-        fetch('https://localhost:7267' + '/API/Contacts/' + props.contact + '/Messages', {
+        fetch('https://localhost:7267' + '/API/contacts/' + props.contact + '/messages', {
             method:"GET",
             headers: {"Authorization":"Bearer " + Token.get()}
         }).then(res => res.json()).then(res => setMessags(res))
-    }, [props.contact, props.refreshed, counter]
+    }, [props.contact, props.refreshed]
     )
 
     useEffect(() => {

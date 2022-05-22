@@ -1,13 +1,8 @@
 import React from 'react';
-import allUsers from '../allUsers';
 import './RegisterPage.css';
 import { Link } from 'react-router-dom';
 import { useHistory } from "react-router-dom";
-import messages from '../Components/messages';
-import BlankUser from '../BlankUser.png';
 import Token from '../Token.js';
-import { useEffect, useState } from 'react';
-
 
 function RegisterPage(props) {
     const [RegisterData, setRegisterData] = React.useState({
@@ -29,62 +24,6 @@ function RegisterPage(props) {
     }
     
     const [erroMessageRemoval, setErroMessageRemoval] = React.useState(true)
-
-    // function handleSubmit(event) {
-    //     event.preventDefault()
-    //     if (RegisterData.username.length === 0) {
-    //         setUserValid(false)
-    //         return
-    //     } else {
-    //         setUserValid(true)
-    //     }
-    //     if (RegisterData.password.length === 0) {
-    //         setpasswordValid(false)
-    //     } else {
-    //         let matchPattern = RegisterData.password.match(/\d+/g);
-    //         if (!(matchPattern != null) || !(/[a-zA-Z]+/.test(RegisterData.password))) {
-    //             console.log('The input string not contain numbers');
-    //             setpasswordValid(false);
-    //             return
-    //         } else {
-    //             setpasswordValid(true)
-    //         }
-    //     }
-
-    //     if (RegisterData.password !== RegisterData.repeatPassword) {
-    //         setrepeatPasswordValid(false)
-    //         return
-    //     } else {
-    //         setrepeatPasswordValid(true)
-    //     }
-    //     if (RegisterData.nickname.length === 0) {
-    //         setnicknamerValid(false)
-    //         return
-    //     } else {
-    //         setnicknamerValid(true)
-    //     }
-    //     finalCheck();
-    // }
-    
-    // function finalCheck() {
-    //     if(userValid && passwordValid && repeatPasswordValid && nicknameValid) {
-    //         let flag = findIfUsernameExist();
-    //         if(flag) {
-    //             setregisterValid(false);
-    //         } else {
-
-    //             setregisterValid(true);
-    //             allUsers.push(RegisterData);
-    //             messages.push({user: RegisterData.username, 
-    //                 chats: []
-    //             })
-    //             history.push("/chatPage");
-    //             props.updateUser(RegisterData.username);
-    //         }
-    //     }
-    //     console.log(allUsers)
-    // }
-
     const [errorMassageFromServer, setErrorMassageFromServer] = React.useState('')
 
     function handleSubmit(event) {
@@ -96,7 +35,7 @@ function RegisterPage(props) {
                 return
         }
 
-        fetch('https://localhost:7267' + '/API/Register/' + RegisterData.username.toString() + '&' + RegisterData.password.toString()
+        fetch('https://localhost:7267' + '/API/register/' + RegisterData.username.toString() + '&' + RegisterData.password.toString()
                 + '&' + RegisterData.repeatPassword.toString() + '&' + RegisterData.nickname.toString(), {
             method:"POST", 
         }).then(res => {
@@ -112,17 +51,6 @@ function RegisterPage(props) {
             }
         })
     }
-
-    function findIfUsernameExist() {
-        let flag = false;
-        allUsers.forEach(user => {
-            if(user.username === RegisterData.username) {
-                flag = true;
-            }
-        });
-        return flag;
-    }
-
 
     return (
         <div id="registerArea">

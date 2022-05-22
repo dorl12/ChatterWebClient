@@ -1,7 +1,4 @@
-import React, { useState } from 'react';
-import messages from './messages';
-import man1 from '../man1.jpg'
-import { Col, Container, Row } from 'react-bootstrap';
+import React from 'react';
 
 function MessageItem({sender, text, time}){
 
