@@ -8,6 +8,7 @@ import Token from '../Token';
 function ChatContent(props){
 
     //const cont = Helpers.findChats(props.username, props.contact);
+    const [nameOfContact, setNameOfContact] = useState("");
     const [messagsList, setMessags] = useState([]);
     const [counter, setCounter] = useState(1);
     useEffect(() => {
@@ -20,6 +21,14 @@ function ChatContent(props){
     }, [props.contact, props.refreshed, counter]
     )
 
+    useEffect(() => {
+        fetch('https://localhost:7267' + '/API/Users/' + props.contact, {
+            method:"GET",
+            headers: {"Authorization":"Bearer " + Token.get()}
+        }).then(res => res.json()).then(res => setNameOfContact(res))
+    }, [props.contact, props.refreshed, counter]
+    )
+
     const chatContent = messagsList.map((message, key) => {
         return (<MessageItem sender={message.sent} text={message.content} time={message.created.toString().substring(0,19)} key={key}></MessageItem>)
     });
@@ -28,7 +37,7 @@ function ChatContent(props){
         <>
             <Container fluid>
                 <Row>
-                    <h1 className='bbb border contactColor'>{props.contact}</h1>
+                    <h1 className='bbb border contactColor'>{nameOfContact.name}</h1>
                 </Row>
                 <Row className="overflow-auto scroller">
                     <div className='padded'>
