@@ -3,10 +3,10 @@ import InputBar from './InputBar';
 import { Container, Row } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
 import Token from '../Token';
+import Helpers from '../Logic/helpers';
 
 function ChatContent(props){
 
-    //const cont = Helpers.findChats(props.username, props.contact);
     const [nameOfContact, setNameOfContact] = useState("");
     const [messagsList, setMessags] = useState([]);
     useEffect(() => {
@@ -28,7 +28,7 @@ function ChatContent(props){
     )
 
     const chatContent = messagsList.map((message, key) => {
-        return (<MessageItem sender={message.sent} text={message.content} time={message.created.toString().substring(0,19)} key={key}></MessageItem>)
+        return (<MessageItem sender={message.sent} text={message.content} time={Helpers.parseTime(message.created)} key={key}></MessageItem>)
     });
 
     return (

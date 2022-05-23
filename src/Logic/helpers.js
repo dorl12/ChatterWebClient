@@ -70,4 +70,9 @@ export default class Helpers{
         }
         )
     }
+
+    static parseTime(timeString) {
+        let time = timeString.substring(11, 16)
+        return time
+    }
 }

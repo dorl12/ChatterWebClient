@@ -5,6 +5,7 @@ import { ListGroup } from 'react-bootstrap';
 import { useHistory } from "react-router-dom";
 import Token from '../Token';
 import GenericProfile from "../Generic-Profile.jpg";
+import Helpers from '../Logic/helpers';
 
 function ChatSideBar(props){
 
@@ -37,13 +38,15 @@ function ChatSideBar(props){
         const contactsList = chatList.map((chat, key) => {
             if (chat.id==props.contact) {
                 props.setContactServer(chat.server)
-                return (<ListGroup.Item as="li" active key={key}><ChatItem setContact={props.setContact} contact={chat.id} name={chat.name} time={chat.lastdate.toString()} history={chat.last} ></ChatItem></ListGroup.Item>)
+                console.log(typeof(chat.lastdate))
+                return (<ListGroup.Item as="li" active key={key}><ChatItem setContact={props.setContact} contact={chat.id} name={chat.name} time={Helpers.parseTime(chat.lastdate)} history={chat.last} ></ChatItem></ListGroup.Item>)
             }
-            return (<ListGroup.Item as="li" key={key}><ChatItem setContact={props.setContact} contact={chat.id} name={chat.name} time={chat.lastdate.toString()} history={chat.last}></ChatItem></ListGroup.Item>)
+            return (<ListGroup.Item as="li" key={key}><ChatItem setContact={props.setContact} contact={chat.id} name={chat.name} time={Helpers.parseTime(chat.lastdate)} history={chat.last}></ChatItem></ListGroup.Item>)
         }
         );
 
         function exitIcon() {
+            props.setRefreshed(prev => {return !prev;});
             history.push("/");
         }
     

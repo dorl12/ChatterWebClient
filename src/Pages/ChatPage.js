@@ -53,7 +53,7 @@ function ChatPage(props){
                 <div className="container">
                     <div className="row">
                         <div className="vh-100 col-4 bg-light rounded overflow-auto">
-                            <ChatSideBar username={props.username} refreshed={refreshed} setContact={setContact} setContactServer={setContactServer} contact={contact}></ChatSideBar>
+                            <ChatSideBar username={props.username} setRefreshed={setRefreshed} refreshed={refreshed} setContact={setContact} setContactServer={setContactServer} contact={contact}></ChatSideBar>
                         </div>
                         <div className="vh-100 col content-bg rounded">
                             {isEmpty()}
