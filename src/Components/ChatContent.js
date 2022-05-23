@@ -24,7 +24,7 @@ function ChatContent(props){
             method:"GET",
             headers: {"Authorization":"Bearer " + Token.get()}
         }).then(res => res.json()).then(res => setNameOfContact(res))
-    }, [props.contact, props.refreshed, counter]
+    }, [props.contact, props.refreshed]
     )
 
     const chatContent = messagsList.map((message, key) => {
