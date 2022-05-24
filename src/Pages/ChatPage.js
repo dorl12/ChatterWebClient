@@ -4,6 +4,7 @@ import ChatContent from '../Components/ChatContent';
 import './ChatPage.css';
 import { HubConnectionBuilder, HttpTransportType } from '@microsoft/signalr';
 import Token from '../Token.js';
+import Server from "../Server";
 
 function ChatPage(props){
 
@@ -23,7 +24,7 @@ function ChatPage(props){
 
     useEffect(() => {
         const newConnection = new HubConnectionBuilder()
-            .withUrl('https://localhost:7267/ChatHub', {
+            .withUrl('https://localhost:' + Server.get() + '/ChatHub', {
                 accessTokenFactory: () => Token.get(),
                 skipNegotiation: true,
                 transport: HttpTransportType.WebSockets

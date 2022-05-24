@@ -9,4 +9,3 @@ export default class Token {
     }
     
 }
-//const token = "";

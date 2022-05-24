@@ -4,13 +4,14 @@ import { Container, Row } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
 import Token from '../Token';
 import Helpers from '../Logic/helpers';
+import Server from "../Server";
 
 function ChatContent(props){
 
     const [nameOfContact, setNameOfContact] = useState("");
     const [messagsList, setMessags] = useState([]);
     useEffect(() => {
-        fetch('https://localhost:7267' + '/API/contacts/' + props.contact + '/messages', {
+        fetch('https://localhost:' + Server.get() + '/API/contacts/' + props.contact + '/messages', {
             method:"GET",
             headers: {"Authorization":"Bearer " + Token.get()}
         }).then(res => res.json()).then(res => setMessags(res))
@@ -18,7 +19,7 @@ function ChatContent(props){
     )
 
     useEffect(() => {
-        fetch('https://localhost:7267' + '/API/Users/' + props.contact, {
+        fetch('https://localhost:' + Server.get() + '/API/Users/' + props.contact, {
             method:"GET",
             headers: {"Authorization":"Bearer " + Token.get()}
         }).then(res => res.json()).then(res => setNameOfContact(res))

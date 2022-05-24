@@ -3,6 +3,7 @@ import './LogInPage.css';
 import { Link } from 'react-router-dom';
 import { useHistory } from "react-router-dom";
 import Token from '../Token.js';
+import Server from "../Server";
 
 function LogInPage(props) {
     const [loginData, setLoginData] = React.useState({
@@ -30,7 +31,7 @@ function LogInPage(props) {
             id: loginData.username,
             password: loginData.password
         }
-        fetch('https://localhost:7267' + '/API/login', {
+        fetch('https://localhost:' + Server.get() + '/API/login', {
             method:"POST", 
             headers: {"content-type": "application/json"},
             body: JSON.stringify(loginDataPost),

@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import { FormControl } from "react-bootstrap";
 import Token from '../Token';
+import Server from "../Server";
 
 function AddNewChat(props){
 
@@ -41,7 +42,7 @@ function AddNewChat(props){
             server: addNewContactData.server
         }
         var firstFetchSuccessed = true;
-        fetch('https://localhost:7267' + '/API/contacts', {
+        fetch('https://localhost:' + Server.get() + '/API/contacts', {
             method:"post",
             headers: {"content-type": "application/json",
                         "Authorization":"Bearer " + Token.get()},

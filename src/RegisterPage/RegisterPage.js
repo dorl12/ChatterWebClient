@@ -3,6 +3,7 @@ import './RegisterPage.css';
 import { Link } from 'react-router-dom';
 import { useHistory } from "react-router-dom";
 import Token from '../Token.js';
+import Server from '../Server';
 
 function RegisterPage(props) {
     const [RegisterData, setRegisterData] = React.useState({
@@ -42,7 +43,7 @@ function RegisterPage(props) {
             password: RegisterData.password,
             name: RegisterData.nickname
         }
-        fetch('https://localhost:7267' + '/API/register', {
+        fetch('https://localhost:' + Server.get() + '/API/register', {
             method:"POST", 
             headers: {"content-type": "application/json"},
             body: JSON.stringify(RegisterDataPost),

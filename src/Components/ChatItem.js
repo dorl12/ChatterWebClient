@@ -19,7 +19,7 @@ function ChatItem(props){
     }
 
     return (
-        <div className="container" onClick={() => props.setContact(props.contact)}>
+        <div className="container" onClick={() => {props.setContact(props.contact); props.setContactServer(props.contactServer)}}>
             <div className="row">
                 <div className="col-1">
                     <img src={GenericProfile} alt={props.name}></img>

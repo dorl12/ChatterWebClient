@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 import Token from '../Token';
 import GenericProfile from "../Generic-Profile.jpg";
 import Helpers from '../Logic/helpers';
+import Server from "../Server";
 
 function ChatSideBar(props){
 
@@ -15,7 +16,7 @@ function ChatSideBar(props){
     const [change, setChange] = useState(false);
     const [chatList, setChat] = useState([]);
     useEffect(() => {
-        fetch('https://localhost:7267' + '/API/contacts', {
+        fetch('https://localhost:' + Server.get() + '/API/contacts', {
             method:"GET",
             headers: {"Authorization":"Bearer " + Token.get()}
         }).then(res => res.json()).then(res => setChat(res))
@@ -23,7 +24,7 @@ function ChatSideBar(props){
     )
 
     useEffect(() => {
-        fetch('https://localhost:7267' + '/API/Users', {
+        fetch('https://localhost:' + Server.get() + '/API/Users', {
             method:"GET",
             headers: {"Authorization":"Bearer " + Token.get()}
         }).then(res => res.json()).then(res => setNameOfUser(res))
@@ -35,10 +36,10 @@ function ChatSideBar(props){
 
         const contactsList = chatList.map((chat, key) => {
             if (chat.id==props.contact) {
-                props.setContactServer(chat.server)
-                return (<ListGroup.Item as="li" active key={key}><ChatItem setContact={props.setContact} contact={chat.id} name={chat.name} time={Helpers.parseTime(chat.lastdate)} history={chat.last} ></ChatItem></ListGroup.Item>)
+                //props.setContactServer(chat.server)
+                return (<ListGroup.Item as="li" active key={key}><ChatItem setContactServer={props.setContactServer} contactServer={chat.server} setContact={props.setContact} contact={chat.id} name={chat.name} time={Helpers.parseTime(chat.lastdate)} history={chat.last} ></ChatItem></ListGroup.Item>)
             }
-            return (<ListGroup.Item as="li" key={key}><ChatItem setContact={props.setContact} contact={chat.id} name={chat.name} time={Helpers.parseTime(chat.lastdate)} history={chat.last}></ChatItem></ListGroup.Item>)
+            return (<ListGroup.Item as="li" key={key}><ChatItem setContactServer={props.setContactServer} contactServer={chat.server} setContact={props.setContact} contact={chat.id} name={chat.name} time={Helpers.parseTime(chat.lastdate)} history={chat.last}></ChatItem></ListGroup.Item>)
         }
         );
 

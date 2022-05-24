@@ -1,6 +1,7 @@
 import allUsers from "../allUsers";
 import messages from "../Components/messages";
 import Token from '../Token';
+import Server from "../Server";
 
 export default class Helpers{
 
@@ -41,7 +42,7 @@ export default class Helpers{
             return;
         }
         const messageData = {content: text}
-        fetch('https://localhost:7267' + '/API/contacts/' + contact + '/messages', {
+        fetch('https://localhost:' + Server.get() + '/API/contacts/' + contact + '/messages', {
             method:"post",
             headers: {"content-type": "application/json",
                         "Authorization":"Bearer " + Token.get()},
