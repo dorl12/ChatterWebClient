@@ -15,7 +15,6 @@ function ChatSideBar(props){
     const [change, setChange] = useState(false);
     const [chatList, setChat] = useState([]);
     useEffect(() => {
-        console.log("fatching all contacts")
         fetch('https://localhost:7267' + '/API/contacts', {
             method:"GET",
             headers: {"Authorization":"Bearer " + Token.get()}
@@ -34,11 +33,9 @@ function ChatSideBar(props){
 
 // res.status is RETURN VALUE
 
-    console.log(props.username)
         const contactsList = chatList.map((chat, key) => {
             if (chat.id==props.contact) {
                 props.setContactServer(chat.server)
-                console.log(typeof(chat.lastdate))
                 return (<ListGroup.Item as="li" active key={key}><ChatItem setContact={props.setContact} contact={chat.id} name={chat.name} time={Helpers.parseTime(chat.lastdate)} history={chat.last} ></ChatItem></ListGroup.Item>)
             }
             return (<ListGroup.Item as="li" key={key}><ChatItem setContact={props.setContact} contact={chat.id} name={chat.name} time={Helpers.parseTime(chat.lastdate)} history={chat.last}></ChatItem></ListGroup.Item>)

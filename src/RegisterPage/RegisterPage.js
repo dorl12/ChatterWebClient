@@ -28,20 +28,28 @@ function RegisterPage(props) {
 
     function handleSubmit(event) {
         event.preventDefault()
-        if ((RegisterData.username.length === 0) || (RegisterData.password.length === 0) || (RegisterData.repeatPassword.length === 0)
-             || (RegisterData.nickname.length === 0)) {
-                setErrorMassageFromServer("Empty fields are forbidden")
-                setErroMessageRemoval(false);
-                return
+        if ((RegisterData.password.length === 0)) {
+            setErrorMassageFromServer("Empty fields are not Allowed")
+            setErroMessageRemoval(false);
+            return
+        } else if (RegisterData.password != RegisterData.repeatPassword) {
+            setErrorMassageFromServer("password and repeatPassword most be the same")
+            setErroMessageRemoval(false);
+            return
         }
-
-        fetch('https://localhost:7267' + '/API/register/' + RegisterData.username.toString() + '&' + RegisterData.password.toString()
-                + '&' + RegisterData.repeatPassword.toString() + '&' + RegisterData.nickname.toString(), {
+        const RegisterDataPost = {
+            id: RegisterData.username,
+            password: RegisterData.password,
+            name: RegisterData.nickname
+        }
+        fetch('https://localhost:7267' + '/API/register', {
             method:"POST", 
+            headers: {"content-type": "application/json"},
+            body: JSON.stringify(RegisterDataPost),
         }).then(res => {
             res.text().then(t => {
                 Token.set(t)
-            })
+            }).then(t => {
             if(res.ok) {
                 history.push("/chatPage");
                 props.updateUser(RegisterData.username);
@@ -49,7 +57,7 @@ function RegisterPage(props) {
                 setErrorMassageFromServer(Token.get());
                 setErroMessageRemoval(false);
             }
-        })
+        })})
     }
 
     return (
@@ -88,11 +96,12 @@ function RegisterPage(props) {
                     </div>
                 </div>
 
-                <div className="mb-3">
-                    <label htmlFor="imageFile" className="form-label">Upload Image</label>
-                    <input className="form-control" type="file" id="imageFile"
-                     name="image" onChange={handleChange} file={RegisterData.image}></input>
-                </div>
+                {//<div className="mb-3">
+                //   <label htmlFor="imageFile" className="form-label">Upload Image</label>
+                //   <input className="form-control" type="file" id="imageFile"
+                //</div>    name="image" onChange={handleChange} file={RegisterData.image}></input>
+                //</div>  
+                }
 
                 <div className="mb-3"></div>
                 <button type="submit" className="btn btn-primary" id="RegisterButton">Register</button>

@@ -48,7 +48,6 @@ function AddNewChat(props){
             body: JSON.stringify(addContactData),
         }).then(res => {
             if(res.ok) {
-                console.log("good request")
                 props.setChange((prev) => {return !prev})
                 setErrorMessage("Contact Added")
                 setAddNewContactData({
@@ -57,7 +56,6 @@ function AddNewChat(props){
                     server: ""
                 })
             } else {
-                console.log("bad request")
                 firstFetchSuccessed = false
                 setErrorMessage("Contact already exist")
             }
@@ -75,7 +73,6 @@ function AddNewChat(props){
                     body: JSON.stringify(invitationData),
                 }).then(res => {
                     if(res.status) {
-                        console.log("2-good request")
                         props.setChange((prev) => {return !prev})
                     }
                 }

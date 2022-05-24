@@ -10,8 +10,6 @@ function ChatContent(props){
     const [nameOfContact, setNameOfContact] = useState("");
     const [messagsList, setMessags] = useState([]);
     useEffect(() => {
-        console.log("fatching all Messages")
-
         fetch('https://localhost:7267' + '/API/contacts/' + props.contact + '/messages', {
             method:"GET",
             headers: {"Authorization":"Bearer " + Token.get()}
