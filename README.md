@@ -24,6 +24,8 @@ The current port of the API is 7267.
 To change the port number, change the field 'server' in the file 'Server.js':
 ![image](https://user-images.githubusercontent.com/91034418/170118209-978e44b4-6e16-4177-975f-3a36d06ede76.png)
 
+### Instructions:
+In order to enjoy the full experience of out app, please run this React app, the ASP.NET API and also the MVC Ranking Server.
 
 ### Functionality:
 
