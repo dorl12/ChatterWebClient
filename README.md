@@ -1,3 +1,5 @@
+!!!FOR EXCERCISE 2 PLEASE ADDRESS TO THE 'ex2' BRANCH!!!
+
 # Welcome to Chatter!
 
 Your new favorite chat system.
