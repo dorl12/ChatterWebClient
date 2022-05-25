@@ -1,9 +1,10 @@
+
 # Welcome to Chatter!
 
 Your new favorite chat system.
 With Chatter you can log in to your own user and chat with an UNLIMITED number of interesting people.
 
-### Options for logging in (all found in the file "AllUsers"):
+### Options for logging in:
 
 Username: or
 Password: or123
@@ -11,17 +12,19 @@ Password: or123
 Username: yotam
 Password: yotam123
 
-Username: lisa
-Password: lisa123
+Username: dor
+Password: dor123
 
-Username: ross
-Password: ross123
+Username: gal
+Password: gal123
 
-Username: gilad
-Password: gilad123
+## API Port:
+The current port of the API is 7267.
+To change the port number, change the field 'server' in the file 'Server.js':
+![image](https://user-images.githubusercontent.com/91034418/170118209-978e44b4-6e16-4177-975f-3a36d06ede76.png)
 
-Username: adi
-Password: adi123
+## Instructions:
+In order to enjoy the full experience of our app, please run this React app, the ASP.NET API and also the MVC Ranking Server.
 
 ### Functionality:
 
