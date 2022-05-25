@@ -29,9 +29,8 @@ In order to enjoy the full experience of our app, please run this React app, the
 ### Functionality:
 
 - Once you've logged in, you can click on any chat that is shown in the left sidebar to open your conversation with that person.
-- You can send a text message, an image, a video or a voice recording.
+- You can send a text message.
 - To add a new contact, press the symbol to the right of your user's name.
-- If the contact you're adding exists in our database, your conversation with them will appear and also their photo.
 - To log out please press the door symbol to the left of your user's name.
 
 Enjoy your Chatter! :)
