@@ -34,7 +34,7 @@ function RegisterPage(props) {
             setErroMessageRemoval(false);
             return
         } else if (RegisterData.password != RegisterData.repeatPassword) {
-            setErrorMassageFromServer("password and repeatPassword most be the same")
+            setErrorMassageFromServer("password and repeatPassword must be the same")
             setErroMessageRemoval(false);
             return
         }
@@ -96,14 +96,6 @@ function RegisterPage(props) {
                             name="nickname" onChange={handleChange} value={RegisterData.nickname}></input>
                     </div>
                 </div>
-
-                {//<div className="mb-3">
-                //   <label htmlFor="imageFile" className="form-label">Upload Image</label>
-                //   <input className="form-control" type="file" id="imageFile"
-                //</div>    name="image" onChange={handleChange} file={RegisterData.image}></input>
-                //</div>  
-                }
-
                 <div className="mb-3"></div>
                 <button type="submit" className="btn btn-primary" id="RegisterButton">Register</button>
                 <div>{!erroMessageRemoval && <small className="invalid--data">{errorMassageFromServer}</small>}</div>

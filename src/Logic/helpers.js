@@ -36,7 +36,6 @@ export default class Helpers{
         }
     }
 
-
     static sendMessage(contact, text, setRefreshed, setInput) {
         if (text.length<1) {
             return;

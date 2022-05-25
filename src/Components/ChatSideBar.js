@@ -31,12 +31,8 @@ function ChatSideBar(props){
     }, []
     )
 
-
-// res.status is RETURN VALUE
-
         const contactsList = chatList.map((chat, key) => {
             if (chat.id==props.contact) {
-                //props.setContactServer(chat.server)
                 return (<ListGroup.Item as="li" active key={key}><ChatItem setContactServer={props.setContactServer} contactServer={chat.server} setContact={props.setContact} contact={chat.id} name={chat.name} time={Helpers.parseTime(chat.lastdate)} history={chat.last} ></ChatItem></ListGroup.Item>)
             }
             return (<ListGroup.Item as="li" key={key}><ChatItem setContactServer={props.setContactServer} contactServer={chat.server} setContact={props.setContact} contact={chat.id} name={chat.name} time={Helpers.parseTime(chat.lastdate)} history={chat.last}></ChatItem></ListGroup.Item>)
