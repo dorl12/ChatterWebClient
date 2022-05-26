@@ -36,6 +36,11 @@ function AddNewChat(props){
             return;
         }
 
+        if (addNewContactData.username == props.username) {
+            setErrorMessage("You can not add yourself")
+            return;
+        }
+
         const addContactData = {
             id: addNewContactData.username,
             name: addNewContactData.nickname,
