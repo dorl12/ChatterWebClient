@@ -38,13 +38,15 @@ function LogInPage(props) {
         }).then(res => {
             res.text().then(t => {
                 Token.set(t)
-            })
-            if(res.ok) {
-                history.push("/chatPage");
-                props.updateUser(loginData.username);
-            } else {
-                setlogInValid(false);
+            }).then(t => {
+                if(res.ok) {
+                    history.push("/chatPage");
+                    props.updateUser(loginData.username);
+                } else {
+                    setlogInValid(false);
+                }
             }
+            )
         })
     }
 
