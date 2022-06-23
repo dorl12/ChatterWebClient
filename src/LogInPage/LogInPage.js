@@ -39,11 +39,11 @@ function LogInPage(props) {
             res.text().then(t => {
                 Token.set(t)
             }).then(t => {
-                if(res.ok) {
+                if(Token.get == "Password Incorrect!" || Token.get == "Username does not not exist!") {
+                    setlogInValid(false);
+                } else {
                     history.push("/chatPage");
                     props.updateUser(loginData.username);
-                } else {
-                    setlogInValid(false);
                 }
             }
             )

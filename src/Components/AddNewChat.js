@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import { FormControl } from "react-bootstrap";
 import Token from '../Token';
 import Server from "../Server";
+import Helpers from "../Logic/helpers";
 
 function AddNewChat(props){
 
@@ -73,7 +74,8 @@ function AddNewChat(props){
                     to: addNewContactData.username,
                     server: addNewContactData.server
                 }
-                fetch('https://' + addNewContactData.server + '/API/invitations', {
+                var fixedContactServer = Helpers.fixServer(addNewContactData.server);
+                fetch('https://' + fixedContactServer + '/API/invitations', {
                     method:"post",
                     headers: {"content-type": "application/json"},
                     body: JSON.stringify(invitationData),

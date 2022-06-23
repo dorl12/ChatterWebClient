@@ -58,17 +58,27 @@ export default class Helpers{
             content: text
         }
         
-        fetch('https://' + contactServer + '/API/transfer', {
+        var fixedContactServer = Helpers.fixServer(contactServer);
+        fetch('https://' + fixedContactServer + '/API/transfer', {
             method:"post",
             headers: {"content-type": "application/json"},
             body: JSON.stringify(transferData),
         }).then(res => {
+            debugger;
             if(res.status) {
                 setRefreshed((prev) => {return !prev})
                 setInput("")
             }
         }
         )
+    }
+
+    static fixServer(server) {
+        if(server.includes("10.0.2.2")) {
+            return "localhost:7267";
+            //return server.replace("10.0.2.2", "localhost");
+        }
+        return server;
     }
 
     static parseTime(timeString) {
